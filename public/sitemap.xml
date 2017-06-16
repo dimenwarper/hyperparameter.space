@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://hyperparameter.space/</loc>
+    <lastmod>2017-06-11T21:51:17-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://hyperparameter.space/tags/</loc>
     <priority>0</priority>
   </url>
   

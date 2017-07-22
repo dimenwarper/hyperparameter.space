@@ -10,7 +10,7 @@ title               = "Hyperparameter Space"
 pygmentsuseclasses  = true
 disqusshortname     = "hyperparameter" # Comment out to disable Disqus.
 pluralizelisttitles = false
-googleAnalytics     = "UA-123-45"
+googleAnalytics     = "UA-102686929-1"
 
 [permalinks]
 fixed = ":title/"

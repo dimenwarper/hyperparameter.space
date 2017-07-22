@@ -1,0 +1,29 @@
++++
+date = "2017-07-19T10:03:29-07:00"
+draft = false
+title = "Software is eating AI"
+
++++
+
+There's a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: ["Software is eating the world"](https://a16z.com/2016/08/20/why-software-is-eating-the-world/). Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: ["Software is eating the world, but AI is going to eat software"](https://www.technologyreview.com/s/607831/nvidia-ceo-software-is-eating-the-world-but-ai-is-going-to-eat-software/). In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach. Still, these languages are rigid and cumbersome when compared to natural language (when's the last time you wrote 'boilerplate' code for an app?) and requires a significant amount of time to learn them and use them effectively. If the AI promise of seamless interactivity with machines comes to pass, non-experts will be able to command the computer to perform and automate non-trivial tasks with no training. If the AI promise of hyperoptimization comes to pass, software engineers that dedicated their lives to produce beautiful and efficient code will become obsolete. For these events to occur, however, before AI eats software, software will need to eat AI first. This is already happening, but now that the practical utility of AI is apparent to most industries, I'm guessing that this will occur at a much faster rate.
+
+## AI was born and nurtured in the messy land of academia
+
+AI as a discipline came to being inside academia -- a concept invoked and nurtured by academic saints like Turing, Von Neumann, and John McCarthy. Because of this, the tools made to program and teach AI have come mostly from academic groups. In contrast with industry and government, academic incentives have historically been at odds with good software engineering practices. Historically, in the academic setting, a paper that beats a difficult benchmark by a few percentages using a novel cool idea that was coded up hastily has been much more rewarded than the careful planning and implementation of an API that is widely used. Further, academia (and especially AI), is divided into lots of different research [groups and tribes](http://www.dataversity.net/pedro-domingos-on-five-machine-learning-tribes/) that each have their own way of naming and doing things as well as their own software for doing them. Only recently has this started to change, and mostly because of efforts from groups within industry.
+
+
+## A mindset to rule them all
+
+These days, after the initial deep learning hype, interest in AI from a now very well-established software industry is in an all-time high. The tech titans and various open source communities have now perfected the art of making scalable software and useful API abstractions that commoditize very complex tasks at a very big scale. In a short time frame, we have been presented with various flavors of "computation graphs" in many languages as well as APIs like scikit learn that make building machine learning systems an almost effortless endeavor (provided the right data and statistical insights of course). In its relatively short life, Google's Tensorflow has more than 64000 stars in github, with a farther outreach than it's academic ancestor, Theano. With APIs like Keras, a relative software engineering newbie can build neural nets in minutes with a few dozen lines of code. PyTorch, the Facebook competitor, has already accrued an impressive following (6.7K stars in github) despite the fact that the first alpha version was released barely a year ago (also worth mentioning, it looks like the PyTorch audience doesn't overlap as much as you would think with the Torch audience, the LUA predecessor of PyTorch). Microsoft and even Sony have similarily launched frameworks of their own. No matter which becomes the most adopted framework, the fact is that the mindset of translating a model to the computation graph abstraction is the true winner. These tools have become more and more adopted even throughout research groups in machine learning and beyond.
+
+## The power of software is convention
+
+The vast droves of programmers, young and old, hungry to learn data science and AI are now consuming this mindset. They now think in terms of autograds, layers, parameter servers, and computation graphs. These tools are becoming the lingua franca of applied predictive analytics and of a large and well-funded portion of the academic community. The power of such tools and their conventions is that development across all communities that adopt them becomes much more focused and progresses much faster -- it effectively turns what could have been hours of an expert tweaking a model into some amount of GPU compute time. This is how software is eating AI. 
+
+## Full circle
+
+But it [won't stop there](https://blog.keras.io/the-future-of-deep-learning.html). Using the TCP/IP stack as an analogy, we are still in the bottom layers of how to compose and optimize both machine learning models as well as how to optimally collect data to feed them. In the future, the "application layers" of this stack will obviate most of the AI dev tasks of today. It will likely reach a point when the best way of interacting with this stack as an end user will be through natural language. It will be then that AI will begin eating software.
+
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Ouroboros.svg/2000px-Ouroboros.svg.png)
+*Software eating itself (taken from the wikipedia article of Ouroboros)*

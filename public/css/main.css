@@ -599,11 +599,11 @@ section.main .content .markdown h6 {
   margin-top: 1.75rem;
 }
 section.main .content .markdown h1 {
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   margin-bottom: 2rem;
 }
 section.main .content .markdown h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 1.5rem;
 }
 section.main .content .markdown h3 {
@@ -733,3 +733,30 @@ section.main .content .markdown tbody tr:nth-child(odd) td,
 section.main .content .markdown tbody tr:nth-child(odd) th {
   background-color: #f7f7f7;
 }
+
+img + em {
+  display: block;
+  font-size: 12px;
+  text-align: center;
+}
+
+img[src$='#center']
+{
+  display: block;
+  padding-left: 90px; 
+}
+
+img[src$='#floatleft']
+{
+  float:left;
+  margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+}
+
+img[src$='#floatright']
+{
+  float:right;
+  margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+}
+

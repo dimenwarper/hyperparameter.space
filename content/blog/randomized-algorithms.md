@@ -1,1 +1,4 @@
-# Randomized Algorithms
+# The randomized algorithm mindset: how can we embed machine learning seamlessly into algorithmic design?
+
+Perhaps at the core of computer science lies the concept of algorithm: that set of instructions to be run on a Turing machine. Algorithms are solutions to all sorts of problems, from sorting numbers to efficiently selling stuff in a circuit of cities, but their general nature has not percluded their efficient classifications. When we think on algorithm classes, and by extension the classes of the problems they solve, we typically think in terms of worst case analysis, that is, given the size of the input, how many calculations does the algorithm take to finish and give us an answer in the worst possible case. This mindset pushes the algorithmic designer to generate recipes that are truly efficient no matter the input -- it is satisfying to know that sorting n numbers will always take no more than an order of nlog(n) operations. This way of thinking permeates not only algorithmic design but the way we think of the problems we solve.  
+

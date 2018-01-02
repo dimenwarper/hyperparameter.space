@@ -12,6 +12,6 @@ There is another deceptively simple way of approximating NP-hard problems: just 
 
 Note that most (all?) of the algorithms produced through metaheuristics are in fact randomized algorithms by definition since they have to sample the solution space somehow. However, at least to my appreciation, the algorithms produced by the randomized algorithms field are different in spirit: they are constructs that try to be more general and give good theoretical guarantees (or in some cases tight approximation factor bounds). They are simple and well understood, but their solutions are typically inferior to well tuned metaheuristic instances that are massively sampled. Keeping this in mind, I will refer to randomized algorithms as algorithms coming from that field, which is something separate to their metaheuristic kin.
 
-## Best of both worlds
+## Learnlets: smart de-randomization using embedded ML
 
-What I love about randomized algorithms is how straightforward they are to implement. What I love about metaheuristics is their flexibility that allows them to be tuned to my particular dataset. Is there a way to bring the two together? 
+What I love about randomized algorithms is how straightforward they are to implement. What I love about metaheuristics is their flexibility that allows them to be tuned to my particular dataset. Is there a way to bring the two together? I think the answer lies in the old adage: "implement now, optimize later". 

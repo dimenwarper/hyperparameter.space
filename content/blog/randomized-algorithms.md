@@ -48,3 +48,19 @@ Next, I have to write a function that scores my solutions, so here it is.
 
 
 So the score function is basically the expected value of the cut given the membership probabilities. Why didn't I use the more straightforward score that thresholds the probabilities and simply takes the value of the resulting cut? Turns out that this results in a difficult-to-optimize function that varies step-wise (small changes in membership probability will yield the same cut) and so when doing gradient descent you end up with very flat regions of no change that mess up the calculations.
+
+Alright, we're ready to optimize our learnlet!
+
+
+The `optimize` function takes typical optimization hyperparameters to perform gradient descent on neural nets and then optimizes the predictors for each learnable in the specified learnlet. Let's run our learnlet with and without using the predictors in the train/test data.
+
+
+Notice the `predict=True` argument when running the max cut function. This is an extra keyword argument that is added by the learnlet decorator that switches the learnlet to prediction mode, in which is uses the learnable predictors instead of the hard coded, random function to execute the algorithm. Let's now compare the results of our random baseline with our de-randomized learnlet as well to the "ground truth".
+
+
+Cool! Something definitely happened, the score is up in both the train and test sets, so our learnlet did learn something. It didn't quite pick up the optimal value which is a shame, although that would be difficult just using only vertex degree information. For this simple problem, a convolutional neural net that takes all of the adjacency matrix would probably find the right solution.
+
+## Algorithm compiling
+
+For decades, we've used compilers to optimize the code we write, translating it to efficient machine code that rearranges our loops, conditionals, etc. so that it runs faster than simply transcribing our instructions as-is to op codes. The instructions are changed by the compiler, but the algorithm remains the same. I think that we're now at a point where we can "compile" the algorithm itself using machine learning and metaheuristics and seamlessly tailoring our code the data we analyze. In a way, this is a 
+

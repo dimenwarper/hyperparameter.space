@@ -32,38 +32,182 @@ In the end, you would have coded up a 'dumb' algorithm that gets better (for you
 
 To ground the concept, let's look at an example. Consider the MAXCUT problem: given a weighted graph, find an optimal way to split it into two subgraphs such that the sum of edge weights between subgraphs is maximum. MAXCUT is NP-hard and is typically used as one of the first examples for illustrating randomized algorithms. The naive randomized algorithm for MAXCUT is extremely simple: for each vertex, randomly choose if it will be part of one subgraph or the other. A simple analysis reveals that this algorithm gives an expected cut of at least half the amount of the actual maximum cut, so in a way it gets us halfway there. This is the python implementation:
 
+{{< highlight python >}}
+def vertex_set_probs(adj_mat_flattened):
+    return np.random.rand(GRAPH_SIZE)
 
-Notice how I'm using the graph vertex degrees as input to the random decision function `vertex_set_probs`, even though I don't use them at all. This is intentional, I'm thinking ahead in that these will be the features that will be used to better the improve the algorithm. It also outputs probabilities of sets, which will be useful for scoring solutions, we can at anytime threshold these proabilities at 0.5 to decide which vertex belongs to which set. Now, what I want to do is somehow turn this into a learnlet, by flagging the `vertex_set_probs` function as a learnable decision function. To this end, I've implemented a very simple learnlet framework in python that uses a crude reinforcement learning strategy using policy gradients to optimize the learnables given some score function, leveraging the excellent autograd package. Inspired by the awesome numba package, my framework uses decorators to flag functions as learnets or learnables, which is a nice way to seamlessly add functionality to your code:
+def rand_max_cut(adj_mat):
+    degrees = adj_mat.sum(axis=1)
+    chosen_probs = vertex_set_probs(adj_mat.ravel())
+    return adj_mat, chosen_probs.reshape([chosen_probs.shape[0], 1])
 
+{{< /highlight >}}
 
+Notice how I'm using the graph vertex degrees as input to the random decision function `vertex_set_probs`, even though I don't use them at all. This is intentional, I'm thinking ahead in that these will be the features that will be used to better the improve the algorithm. It also outputs probabilities of sets, which will be useful for scoring solutions, we can at anytime threshold these proabilities at 0.5 to decide which vertex belongs to which set. Now, what I want to do is somehow turn this into a learnlet, by flagging the `vertex_set_probs` function as a learnable decision function. To this end, I've implemented a very simple learnlet framework in python that uses a crude reinforcement learning strategy using policy gradients to optimize the learnables given some score function, leveraging the excellent autograd package. Inspired by the awesome numba package, my framework uses decorators to flag functions as learnets or learnables, which is a nice way to seamlessly add functionality to your code (you can find the whole implementation and the examples of this post in a jupyter notebook here):
+
+{{< highlight python >}}
+@learnable(predictor=DenseNetPredictor(layer_sizes=[20*20, 20, 20],
+                                       activations=[relu, sigmoid]))
+def vertex_set_probs(adj_mat_flattened):
+    return np.random.rand(GRAPH_SIZE)
+
+@learnlet(learnables=[vertex_set_probs])
+def rand_max_cut(adj_mat):
+    degrees = adj_mat.sum(axis=1)
+    chosen_probs = vertex_set_probs(adj_mat.ravel())
+    return adj_mat, chosen_probs.reshape([chosen_probs.shape[0], 1])
+
+{{< /highlight >}}
 
 Some explanations of the arguments of the decorators are in order. The learnable decorator specifies that the function will be approximated with a particular predictor, in this case a very simple dense neural net. The learnlet decorator simply flags the function as a learnlet and lists all of the learnables that it uses. Notice that the first (input) layer of the `vertex_set_probs` predictor neural net is set to 20. Since the function takes an array of vertex degrees, this means that our current learnlet will only work with graphs with 20 vertices. 
 
 Now, let's generate some data. Suppose that this code will mostly run on graphs of 20 vertices that have two cliques chosen at random whith sparse, inter-clique connections. Further, suppose that the cliques have weak intra-clique connections but very strong inter-clique connections, so the max cut is obvious. Here's the code for generating these graphs and an example adjacency matrix.
 
+{{< highlight python >}}
+from itertools import product
+
+GRAPH_SIZE = 20
+
+def submat_indices(idxset1, idxset2):
+    I = np.array([x for x in product(idxset1, idxset2)])
+    return I[:, 0], I[:, 1]
+
+def generate_graph(size):
+    set1 = np.random.choice(range(size), np.random.randint(5, np.int(size/2)), replace=False)
+    set2 = np.array([x for x in range(size) if x not in set1])
+    
+    adj_mat = np.eye(size)
+    adj_mat[submat_indices(set1, set1)] = 3
+    adj_mat[submat_indices(set2, set2)] = 1
+    
+    interface_nodes_set1 = np.random.choice(set1, 5, replace=False)
+    interface_nodes_set2 = np.random.choice(set2, 5, replace=False)
+    
+    
+    adj_mat[submat_indices(interface_nodes_set1, interface_nodes_set2)] = 50
+    adj_mat[submat_indices(interface_nodes_set2, interface_nodes_set1)] = 50
+    
+    r = np.arange(size)
+    r1 = np.zeros([size, 1])
+    r1[np.isin(r, set1)] = 1
+    
+    adj_mat += np.random.rand(*adj_mat.shape)
+    adj_mat = (adj_mat + adj_mat.T)/2.
+    return adj_mat, r1
+{{< /highlight >}}
+
 
 I'll generate some training and testing graphs for our learnlet.
 
+{{< highlight python >}}
+train_graphs_and_truth = [generate_graph(size=GRAPH_SIZE) for _ in range(100)]
+test_graphs_and_truth = [generate_graph(size=GRAPH_SIZE) for _ in range(100)]
+
+train_graphs = [x[0] for x in train_graphs_and_truth]
+test_graphs = [x[0] for x in test_graphs_and_truth]
+{{< /highlight >}}
+
 Next, I have to write a function that scores my solutions, so here it is.
 
+{{< highlight python >}}
+def max_cut_score(max_cut_results):
+    scores = []
+    for adj_mat, chosen_probs in max_cut_results:
+        p = np.matmul(1 - chosen_probs, chosen_probs.T)
+        scores.append((p * adj_mat).sum()/2.)
+    return np.array(scores).mean()
+{{< /highlight >}}
 
 So the score function is basically the expected value of the cut given the membership probabilities. Why didn't I use the more straightforward score that thresholds the probabilities and simply takes the value of the resulting cut? Turns out that this results in a difficult-to-optimize function that varies step-wise (small changes in membership probability will yield the same cut) and so when doing gradient descent you end up with very flat regions of no change that mess up the calculations.
 
 Alright, we're ready to optimize our learnlet!
 
+{{< highlight python >}}
+optimize(rand_max_cut, 
+         score_fun=max_cut_score, 
+         train_args=dict(step_size=0.1, num_iters=100),
+         batch_size=50,
+         l2_reg=0.6,
+         data=train_graphs)
+{{< /highlight >}}
 
 The `optimize` function takes typical optimization hyperparameters to perform gradient descent on neural nets and then optimizes the predictors for each learnable in the specified learnlet. Let's run our learnlet with and without using the predictors in the train/test data.
 
+{{< highlight python >}}
+from collections import OrderedDict
+import pandas as pd
+
+def run_on_graphs(graphs, predict=False):
+    results = []
+    for adj_mat in graphs:
+        _, chosen_probs = rand_max_cut(adj_mat, predict=predict)
+        results.append((adj_mat, chosen_probs))
+    return results
+
+
+random_train_results = run_on_graphs(train_graphs, predict=False)
+random_test_results = run_on_graphs(test_graphs, predict=False)
+
+train_results = run_on_graphs(train_graphs, predict=True)
+test_results = run_on_graphs(test_graphs, predict=True)
+{{< /highlight >}}
 
 Notice the `predict=True` argument when running the max cut function. This is an extra keyword argument that is added by the learnlet decorator that switches the learnlet to prediction mode, in which it uses the learnable predictors instead of the hard-coded, random function to execute the algorithm. Let's now compare the results of our random baseline with our de-randomized learnlet as well to the "ground truth".
 
+{{< highlight python >}}
+results_dict = OrderedDict()
+results_dict['test'] = dict(random=max_cut_score(random_test_results),
+                            learnlet=max_cut_score(test_results),
+                            truth=max_cut_score(test_graphs_and_truth))
+results_dict['train'] = dict(random=max_cut_score(random_train_results), 
+                             learnlet=max_cut_score(train_results),
+                             truth=max_cut_score(train_graphs_and_truth))
+
+
+pd.DataFrame.from_dict(results_dict, orient='index')
+{{< /highlight >}}
 
 Cool! Something definitely happened, the score is up in both the train and test sets, so our learnlet did learn something. It didn't quite pick up the optimal value which is a shame, although that would be difficult using only vertex degree information. For this simple problem, a convolutional neural net that takes all of the adjacency matrix would probably find the right solution. Still, we basically got this performance boost for free, just adding a couple of decorators to our functions. We can confirm that our learned solutions are better than baseline using the standard max cut score instead of the expected score:
 
+{{< highlight python >}}
+def max_cut_rounding_score(max_cut_results):
+    scores = []
+    for adj_mat, chosen_probs in max_cut_results:
+        set1 = np.where(chosen_probs >= 0.5)[0]
+        set2 = np.where(chosen_probs < 0.5)[0]
+        scores.append(adj_mat[submat_indices(set1, set2)].sum())
+    return np.array(scores).mean()
+    
+
+results_dict = OrderedDict()
+results_dict['test'] = dict(random=max_cut_rounding_score(random_test_results),
+                            learnlet=max_cut_rounding_score(test_results),
+                            truth=max_cut_rounding_score(test_graphs_and_truth))
+results_dict['train'] = dict(random=max_cut_rounding_score(random_train_results), 
+                             learnlet=max_cut_rounding_score(train_results),
+                             truth=max_cut_rounding_score(train_graphs_and_truth))
+
+
+
+pd.DataFrame.from_dict(results_dict, orient='index')
+{{< /highlight >}}
 
 The current learnlet approach still needs improving in several areas. For example, the hyperparameters I chose for the neural net predictor and the optimizer required a bit of experimentation and is something that could be totally automated away using auto ML techniques. Other optimization metaheuristics could be implemented as well, and parallelization of the learning routines, as well as using more scalable machine learning frameworks like PyTorch, Tensorflow, would be desirable. 
 
-I've also experimented with adding ways for automatically capturing the training data of a learnlet: e.g. each time a learnlet-decorated function is called, save the arguments in some database and then use the aggregated data to train the learnlet. For the testing purposes above, I found that this was getting in the way as I needed to measure performance with test/train sets. However, in the real world and when using the algorithm, one could see that a data-capturing feature would be necessary in order to understand the data context where the code is being used.  
+I've also experimented with adding ways for automatically capturing the training data of a learnlet: e.g. each time a learnlet-decorated function is called, save the arguments in some database and then use the aggregated data to train the learnlet. For the testing purposes above, I found that this was getting in the way as I needed to measure performance with test/train sets. However, in the real world and when using the algorithm, one could see that a data-capturing feature would be necessary in order to understand the data context where the code is being used. This is an example of my current solution to this problem:
+
+{{< highlight python >}}
+for adj_mat in train_graphs:
+    # The record flag saves the data (adj_mat) in a database (in this case a simple dict) to be used for training later
+    rand_max_cut(adj_mat, record=True)
+
+# Notice the lack of data argument, the recorded data is used to train the learnlet
+optimize(rand_max_cut, 
+         score_fun=max_cut_score, 
+         train_args=dict(step_size=0.1, num_iters=100),
+         batch_size=50,
+         l2_reg=0.6)
+{{< /highlight >}}
 
 ## Implications of embedding ML
 

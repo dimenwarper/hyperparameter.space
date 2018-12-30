@@ -760,3 +760,16 @@ img[src$='#floatright']
     /* whatever else styles you fancy here */
 }
 
+code .MathJax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    font-color: black;
+    color: black;
+}
+
+.MathJax .mi, .MathJax .mo {
+  color: inherit;
+}
+

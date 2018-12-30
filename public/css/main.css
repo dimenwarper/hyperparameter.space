@@ -773,3 +773,8 @@ code .MathJax {
   color: inherit;
 }
 
+
+pre, .highlight pre {
+ overflow: scroll;
+}
+

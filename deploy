@@ -3,4 +3,5 @@
 cp -r svg/* static/img
 rm -rf public
 hugo --theme=cocoa
+cd public
 scp -o PubkeyAuthentication=no  -r * ofworlds@ofworldsandwoes.com:public_html/hyperparameter.space/

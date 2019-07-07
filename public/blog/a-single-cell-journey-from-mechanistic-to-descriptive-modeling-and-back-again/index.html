@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Set up">
+
+<meta property="og:title" content="A single-cell journey from mechanistic to descriptive modeling and back again" />
+<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.Hub.Queue(function() { // Fix  tags after MathJax finishes running. This is a // hack to overcome a shortcoming of Markdown. Discussion at // https://github.com/mojombo/jekyll/issues/199 var all = MathJax.Hub.getAllJax(), i; for(i = 0; i Whenever I start thinking about a dataset that I need to model or start reading on a new field, one of the first things I try to get a sense of is the level of mechanistic understanding that we currently have on the phenomena that generated the data, and how that mechanism relates (generalizes) to other phenomena." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/" />
+
+
+
+<meta property="article:published_time" content="2017-09-06T23:50:07-07:00"/>
+<meta property="article:modified_time" content="2017-09-06T23:50:07-07:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     A single-cell journey from mechanistic to descriptive modeling and back again 
+
+</title>
+<link rel="canonical" href="http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/">
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2018-12-30%2014%3a32%3a27.967779435%20-0800%20PST">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2018-12-30%2014%3a32%3a27.967779435%20-0800%20PST">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2018-12-30%2014%3a32%3a27.967779435%20-0800%20PST">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://hyperparameter.space/img/favicon.ico"
+
+>
+
+
+
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-102686929-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="http://hyperparameter.space/"><img class="avatar" src="http://hyperparameter.space/img/logo.png" srcset="http://hyperparameter.space/img/logo.png 1x"></a>
+            
+            <a href="http://hyperparameter.space/"><div class="name">Hyperparameter Space</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="http://hyperparameter.space/blog/"><span>All posts</span></a></li>
+                    
+                        <li class="nav-about"><a href="http://hyperparameter.space/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/dimenwarper" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/tsuname" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+            <a href="//linkedin.com/in/sergio-pablo-cordero/" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            <a href="//scholar.google.com/citations?user=nGEthnYAAAAJ&amp;hl=en" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/scholar.svg" alt="google scholar" /></a>
+        
+
+        
+            <a href="mailto:dimenwarper@gmail.com"><img class="icon" src="http://hyperparameter.space/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://hyperparameter.space/index.xml"><img class="icon" src="http://hyperparameter.space/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    A single-cell journey from mechanistic to descriptive modeling and back again
+
+</div>
+
+                    <div class="initials"><a href="http://hyperparameter.space"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Wed Sep 6 2017 23:50:07 PDT'>Sep 6, 2017</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>13 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  // Autonumbering by mathjax
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<p>Whenever I start thinking about a dataset that I need to model or start reading on a new field, one of the first things I try to get a sense of is the level of mechanistic understanding that we currently have on the phenomena that generated the data, and how that mechanism relates (generalizes) to other phenomena. One can usually get a sense of this by carefully looking at how folks are modeling simdata in the field. When performing such surveys, in my experience, there are two main types of models that come up. The first type corresponds to ‘descriptive’ models, which model the data at hand by focusing on its underlying shape, without making assumptions of how the parameters used to capture that shape interact. The second type corresponds to ‘mechanistic’ models, more ambitious models that state that the data arises from mechanistic interactions between its parameters. Importantly, the parameters could correspond to actual, measurable physical entities or abstract mechanisms that replicate in other datasets. Descriptive models focus on the data itself, almost in isolation, whereas mechanistic models are more bigger picture, where the data are only a means to an end of understanding a particular phenomenon. As such, they possess different predictive power: descriptive models make limited and typically qualitative predictions that rarely generalize outside of the distribution of the observed data. In contrast, mechanistic models try to generalize out-of-distribution scenarios and their predictions tend to be non-trivial (and easier to falsify). Similarly, the strategies used to refine and enhance each type of models (e.g. more samples, measure hidden variables, etc.) are different. Note that these model types are orthogonal to the generative vs discriminative classification, although mechanistic models tend to be generative since the generative frame of mind is compatible with finding hidden mechanisms that explain your data. This descriptive/mechanistic divide is very apparent in the nascent field of single-cell genomics and a certain type of measurements that have become all the rage in the field are a perfect example to explore the difference between the two types of models.</p>
+
+<h1 id="what-is-single-cell-genomics-and-why-should-you-care">What is single-cell genomics and why should you care?</h1>
+
+<p>The pages of my first <a href="https://www.crcpress.com/Stochastic-Modelling-for-Systems-Biology-Second-Edition/Wilkinson/p/book/9781439837726">systems biology book</a> were all about gene expression kinetics in single cells. The book focused on the statistical and computational techniques used to study the temporal patterns of gene expression of small gene networks like the <a href="https://en.wikipedia.org/wiki/Lac_operon">lac operon and pals</a>. The measurements to model were mainly readouts of a few gene products through time enabled by laborious microscopy protocols. Arguably, such high resolution measurements provide the most complete depiction of the system and if scaled genome-wide would come close to being a comprehensive portrait of the cell. After a decade since I bought that book, this vision has sort of come to fruition. Thanks to advances in cell isolation and sequencing, we are now able to measure the full transcriptome of thousands (and sometimes millions!) of cells at a scale. The price to do so is pretty low as well &ndash; both open source/maker movements and private companies have helped commoditize these measurements.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/single_cell_moores_law.jpg" alt="" />
+<em>Moore&rsquo;s law in single-cell measurements. Taken from Svensson, et al. arXiv 2017</em></p>
+
+<p>There is one catch though: the measurements are destructive and kill the cell. Unlike microscopy protocols, we’re not yet able to follow the evolution of the full genome as it’s expressed through time. Nonetheless, the ability to easily measure gene expression at single-cell level has taken the genomics world by storm. We are now well aware of our limited understanding of the repertoire (and even the very concept of) cell type in many organs and organisms. For instance, how do you define a neuron? Only through morphological characteristics? What if two neurons looked the same but were expressing different genes and had different behavior under similar conditions? Are they different cell types? How many actual cell types are there in the brain and how do they interact with each other? In the past few years, study after study have found that the gene expression configurations of single cells are complex, heterogeneous, and do not conform to a one-to-one mapping to our known cell types. The acceleration of accruement of these data has been so great that two luminaries of the field, Aviv Regev and Sarah Teichman, have sent out a call to arms to catalogue all human cells across time and space &ndash; the Human Cell Atlas &ndash; that promises to be as important as the human genome project. For once we have a map of all human cell types &ndash; once we know how cells flow from one type to another &ndash; we can may be able to achieve feats such as converting between seemingly unrelated cell types without too much effort (the holy grail of regenerative medicine), or pinpointing and avoiding drivers of potentially cancerous cell states, or simply understanding at a much more detailed level how organs function. Ideally, to best achieve these goals, we would want to get mechanistic models from this huge resource.</p>
+
+<h1 id="cell-trajectories-a-non-linear-rollercoaster">Cell trajectories: a non-linear rollercoaster</h1>
+
+<p>As mentioned above, one way of recording the molecular behavior of cells is by measuring the expression of a handful of genes through time, yielding multivariate cell trajectories of gene expression. Complex cell processes such as infection response, quorum sensing, and metabolic regulation have been dissected in detail through these measurements. Not only do these measurements link gene expression to higher order phenotypes, but they reveal dependencies between genes, essentially probing the gene network that underlies the phenotype directly. The models arising from fitting these data come in the form of stochastic processes that describe the kinetics of the system, usually through some master equation &ndash; a prime example of a mechanistic model. Although the process rules of the gene network could themselves be simple, the resulting behavior is highly non-linear, with potential bifurcations, attractor states, and cycles that bestow upon the cell a wide range of tunable complex behaviors. Many times, the molecule count in these stochastic processes is low, which amplifies the noise in the system, adding yet another element to its complexity. This intrinsic noise plays a critical role in the cell’s fitness landscape and either has to be controlled or can be harnessed to modulate behavior (the <a href="https://en.wikipedia.org/wiki/Cellular_noise">wikipedia page</a> is actually pretty informative if you want to know more on this topic).</p>
+
+<p>Unfortunately, in the vast majority of cases we cannot study a cell’s behavior in such detail, most of the time due to experimental intractability of the system. Furthermore, if we want to probe the expression of more than just a few genes, the cheap and scalable sequencing techniques mentioned in the previous section that we could use to do so require cell lysis. Nevertheless, even through these more coarse-grain, asynchronous measurements we can make out gene expression manifolds that are a static, snapshot representation of the actual cell trajectories. Sure, we’re not able to see the evolution of the system directly, but by capturing the intermediate cell states and interpolating smartly, we could get a notion of the overall shape of the process. This became apparent in several studies in 2014 and generated a lot of excitement &ndash; we were finally able to catch a higher-resolution glimpse of previously inaccessible developmental processes such as cell type differentiation and cell fate decisions. A deluge of methods for ‘trajectory inference’ from these static measurements that used everything from Gaussian processes to simple nearest-neighbor graphs followed (seriously, everyone and their mother in the field have made one version of a trajectory inference algorithm, <a href="https://psb.stanford.edu/psb-online/proceedings/psb17/cordero.pdf">myself included</a>). All of these models are firmly in the descriptive realm: they cannot directly model the temporal gene expression patterns, but they can describe cell states that appear to be interconnected. As with any descriptive models, the predictive power they hold is tied to how effectively they summarize the data so we can visualize it and how they avoid potential confounders in fitting the data’s distribution (e.g. getting the manifold shape right by not connecting two nearby but unrelated states, like connecting points in two different turns of a swiss roll). In contrast to the mechanistic models of temporal gene expression trajectories, their predictions are mainly qualitative: the importance of a gene may or may not be related to how its expression changes from one part of the trajectory to another.</p>
+
+<p>But, how can we get from these descriptive models to more mechanistic ones? What, if any, additional experimental capability we need to start dissecting cell trajectories in detail at a genome-wide level? Below, I&rsquo;ll try to explore these questions using a simple gene expression trajectory system.</p>
+
+<h1 id="the-lorenzian-cell">The Lorenzian cell</h1>
+
+<p>Consider a toy example of a gene expression trajectory. Suppose that we have a cell with three genes whose evolution of gene expression can be written as the following dynamical system:</p>
+
+<p>\begin{cases}
+  \dot{g_1}(t) &amp; = 10(g_2(t) - g_1(t)) \newline
+  \dot{g_2}(t) &amp; = 40g_1(t) - g_2(t) - g_1(t)g_3(t) \newline
+  \dot{g_3}(t) &amp; = g_1(t)g_2(t) - 3g_3(t) \newline
+\end{cases}</p>
+
+<p>This is the well-known Lorenz system. For simplification purposes, we won’t add intrinsic noise to the equations (i.e. they’ll be deterministic) and we will be working in log-space to allow gene expression, which is always non-negative, to take on negative values. Finally, we assume that g2 is an unknown gene that we’re not quantifying (e.g. some transcribed repetitive element in the genome). This is what our trajectory looks like:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/toy_system.gif" alt="" />
+<em>Our toy system</em></p>
+
+<p>Now, suppose we measure this system by sequencing a population of cells all undergoing this trajectory asynchronously using (a very low-throughput) single-cell RNA-seq assay that measures only genes g1 and g2. Say we only have money left in the grant  to measure 20 cells, our data points would then look somewhat like this:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/low_sample_size.png" alt="" />
+<em>Too few samples</em></p>
+
+<p>Note how much of the information in the original system is destroyed &ndash; we can only conclude that there are two cell populations that may or may not be part of the same trajectory &ndash; there is no glimpse into mechanism, we just know of two blobs of data points. Let’s try increasing the information.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/xkcdcell.png" alt="" />
+<em>With apologies to Randall Munroe</em></p>
+
+<h2 id="more-samples">More samples</h2>
+
+<p>Suppose we get lucky in the next grant round and we get money to sequence a whole lot of cells. We unfreeze some samples and sequence 2000 more cells. After doing hair-pulling batch correction to combine the datasets (the confounders in single-cell measurements can get pretty scary), we end up with this data:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/better_sample_size.png" alt="" />
+<em>A bit better</em></p>
+
+<p>And here’s a kernel density estimation of the distribution:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/better_sample_size_kde.png" alt="" />
+<em>Scatterplots can be misleading sometimes</em></p>
+
+<p>Now, we can see clearly the structure of the trajectory’s manifold. We can even compute a principal curve, a smooth curve that follows the local mean of the data, for a crude approximation of the trajectory. In essence, this is what all trajectory inference methods do:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/better_sample_size_curve.png" alt="" />
+<em>Why so serious?</em></p>
+
+<p>We get the overall trend from one attractor to another and we can now confidently say that genes g1 and g3 are correlated somehow. However, many mechanistic details are lost. For example, we wouldn’t be sure if the trajectory is cyclical or if the cell goes from one place to another, never to return. No matter how many more measurements we make, the result will be the same.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/xkcdcell.png" alt="" />
+<em>Organelles not to scale</em></p>
+
+<h2 id="measuring-a-known-unknown-time">Measuring a known unknown: time</h2>
+
+<p>Suppose we somehow get the awesome power to sequence time itself and we are able to barcode our static samples with the exact timepoint in the trajectory from whence they came. We would be able to color this readout and for starters observe that cells do indeed revisit regions of the manifold.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/better_sample_size_time.png" alt="" />
+<em>Still kind of a mess</em></p>
+
+<p>But what model can we use to fit these data? We could, for example, thread a two-dimensional Gaussian process through our cells.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/gaussian_process_random.gif" alt="" />
+<em>With apologies to Jackson Pollock</em></p>
+
+<p>As expected, due to how the samples are randomly interspersed, we get a noisy fit, but the general trend of back-and-forth of the trajectory is captured. While we get a bit closer to modeling the behavior of the cell, we still don’t quite yet have a mechanism for it. Arguably, the kernel choice for the Gaussian process (in this case, a Matern kernel), can yield some insights into these mechanisms, but parsing out the actual dependencies between variables would be non-trivial and qualitative.</p>
+
+<p>Can we fit a more mechanistic model to it? We could try to model the system by guessing a functional form for an ordinary differential equation (ODE) model that fits the data, something called non-linear system identification. I <a href="http://www.pnas.org/content/113/15/3932.full">found an interesting paper</a> that takes this route by performing sparse symbolic regression to obtain an ODE that describes the data. However, when fitting to genes g1 and g3, we run into trouble (plot style changes since this is in matlab)</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/ode_wrong_1.png" alt="" />
+<em>Not even close</em></p>
+
+<p>This is totally off the mark! Even exploring our vocabulary of functions for the symbolic regression by adding high order polynomials (up to 5) and sines and cosines we still get something that’s hilariously wrong. Here, we start getting a hint that something fundamental is missing.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/xkcdcell.png" alt="" />
+<em>I spent way too much time drawing this with a mouse</em></p>
+
+<h2 id="controlling-the-sampling-distribution">Controlling the sampling distribution</h2>
+
+<p>Maybe our measurements are just sampled too at random, which can break local information. Suppose we can capture cells at regular intervals instead of sampling uniformly at random. This regularity is not really all that apparent when we plot the raw data.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/regularly_sampled.png" alt="" />
+<em>Still smiling</em></p>
+
+<p>However, it is very helpful to our Gaussian process. When we re-fit the data to it, we get a pretty good picture of the system’s behavior:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/gaussian_process_redux_random.gif" alt="" />
+<em>I was kind of surprised this worked with little tweaking</em></p>
+
+<p>If we would wish to continue to travel the Gaussian process route and make it as predictive as possible (for example, forecasting future possible events of the system), we would need to rethink on how to partition the data to generalize the periodicity and offset of the attractors. Looking around, I actually <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.82.056206">found a paper</a> that does precisely this.</p>
+
+<p>But we want to be done with descriptive modeling! Let’s fit our sparse ODE system to the regularly sampled data:</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/ode_wrong_2.png" alt="" />
+<em>Not even wrong</em></p>
+
+<p>Same horrible result! This confirms that something is amiss, something we’re not measuring&hellip;</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/xkcdcell.png" alt="" />
+<em>Wonder why I drew a eukaryote cell</em></p>
+
+<h2 id="measuring-an-unknown-unknown">Measuring an unknown unknown</h2>
+
+<p>Using an ODE of just two variables, you’d be hard pressed to find a system with a twin-attractor behavior (I’m no dynamical systems expert &ndash; is it even possible?). So in trying and failing to fit our mechanistic model, we might hypothesize that there’s an extra variable. Recall that we were oblivious to the fact that g2 existed since we couldn’t measure it with our short read technology. Switching to nanopore sequencing, say we are now able to capture g2. Let’s try our symbolic regression ODE once again!</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/ode_right.png" alt="" />
+<em>Left is real data, right is predicted. Colored by timestep. Using the code from Brunton, et al. PNAS, 2016</em></p>
+
+<p>Success! And with just polynomials (at most degree 3) too. A more comprehensive search space would probably yield the linear-plus-interaction-terms form of the actual Lorenz system. We can then go and test these models with follow-up, detailed kinetic measurements.</p>
+
+<h1 id="from-3-genes-to-30k">From 3 genes to 30K+</h1>
+
+<p>This was a hypothetical study of a toy system of three genes, but consider that state of the art single-cell measurements probe more than 30000 different transcripts (the majority of the transcripts are not expressed in a given cell, but even ones that are expressed tend to be in the hundreds to thousands). Sure, getting to the point where we can sample trajectories at the level of detail of the final steps of this blog post would require revolutionary experimental advances &ndash; but it doesn’t seem at all unfeasible. In the not so distant future the day will come when we can get such data. Imagine then the complex behaviour of such a high-dimensional dynamical, stochastic system. The vast space of gene networks that could explain the data would be folds upon folds of magnitude more than the particles in the universe. Fitting a toy system like we did in this post is akin to climbing a small hill in a park, while the Himalayas loom in the distance. Maybe we should stick with descriptive modeling for now.</p>
+
+<p><img src="http://hyperparameter.space/img/mechanistic_single_cell/super_castlevania_4.jpg" alt="" />
+<em>A steep road ahead</em></p>
+
+                <br>
+		<p><a href="http://hyperparameter.space/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'hyperparameter';
+    var disqus_identifier = 'http:\/\/hyperparameter.space\/blog\/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again\/';
+    var disqus_title = 'A single-cell journey from mechanistic to descriptive modeling and back again';
+    var disqus_url = 'http:\/\/hyperparameter.space\/blog\/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-102686929-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+

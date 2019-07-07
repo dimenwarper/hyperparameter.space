@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</loc>
+    <lastmod>2017-09-06T23:50:07-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/software-is-eating-ai/</loc>
+    <lastmod>2017-07-19T10:03:29-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</loc>
+    <lastmod>2017-06-16T21:17:31-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/</loc>
+    <lastmod>2017-06-11T21:51:17-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/about/</loc>
+    <lastmod>2017-04-11T16:23:34-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/blog/</loc>
+    <lastmod>2017-09-06T23:50:07-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/fixed/</loc>
+    <lastmod>2017-04-11T16:23:34-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://hyperparameter.space/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

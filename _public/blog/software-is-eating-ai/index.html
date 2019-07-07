@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Set up">
+
+<meta property="og:title" content="Software is eating AI" />
+<meta property="og:description" content="There&rsquo;s a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: &ldquo;Software is eating the world&rdquo;. Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: &ldquo;Software is eating the world, but AI is going to eat software&rdquo;. In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hyperparameter.space/blog/software-is-eating-ai/" />
+
+
+
+<meta property="article:published_time" content="2017-07-19T10:03:29-07:00"/>
+<meta property="article:modified_time" content="2017-07-19T10:03:29-07:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Software is eating AI 
+
+</title>
+<link rel="canonical" href="http://hyperparameter.space/blog/software-is-eating-ai/">
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2017-09-07%2023%3a10%3a55.714245984%20-0700%20PDT">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2017-09-07%2023%3a10%3a55.714245984%20-0700%20PDT">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2017-09-07%2023%3a10%3a55.714245984%20-0700%20PDT">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://hyperparameter.space/img/favicon.ico"
+
+>
+
+
+
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-102686929-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="http://hyperparameter.space/"><img class="avatar" src="http://hyperparameter.space/img/logo.png" srcset="http://hyperparameter.space/img/logo.png 1x"></a>
+            
+            <a href="http://hyperparameter.space/"><div class="name">Hyperparameter Space</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="http://hyperparameter.space/blog/"><span>All posts</span></a></li>
+                    
+                        <li class="nav-about"><a href="http://hyperparameter.space/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/dimenwarper" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/tsuname" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+            <a href="//linkedin.com/in/sergio-pablo-cordero/" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+            <a href="//scholar.google.com/citations?user=nGEthnYAAAAJ&amp;hl=en" target="_blank" rel="noopener"><img class="icon" src="http://hyperparameter.space/img/scholar.svg" alt="google scholar" /></a>
+        
+
+        
+            <a href="mailto:dimenwarper@gmail.com"><img class="icon" src="http://hyperparameter.space/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://hyperparameter.space/index.xml"><img class="icon" src="http://hyperparameter.space/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Software is eating AI
+
+</div>
+
+                    <div class="initials"><a href="http://hyperparameter.space"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Wed Jul 19 2017 10:03:29 PDT'>Jul 19, 2017</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>There&rsquo;s a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: <a href="https://a16z.com/2016/08/20/why-software-is-eating-the-world/">&ldquo;Software is eating the world&rdquo;</a>. Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: <a href="https://www.technologyreview.com/s/607831/nvidia-ceo-software-is-eating-the-world-but-ai-is-going-to-eat-software/">&ldquo;Software is eating the world, but AI is going to eat software&rdquo;</a>. In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach. Still, these languages are rigid and cumbersome when compared to natural language (when&rsquo;s the last time you wrote &lsquo;boilerplate&rsquo; code for an app?) and requires a significant amount of time to learn them and use them effectively. If the AI promise of seamless interactivity with machines comes to pass, non-experts will be able to command the computer to perform and automate non-trivial tasks with no training. If the AI promise of hyperoptimization comes to pass, software engineers that dedicated their lives to produce beautiful and efficient code will become obsolete. For these events to occur, however, before AI eats software, software will need to eat AI first. This is already happening, but now that the practical utility of AI is apparent to most industries, I&rsquo;m guessing that this will occur at a much faster rate.</p>
+
+<h2 id="ai-was-born-and-nurtured-in-the-messy-land-of-academia">AI was born and nurtured in the messy land of academia</h2>
+
+<p>AI as a discipline came to being inside academia &ndash; a concept invoked and nurtured by academic saints like Turing, Von Neumann, and John McCarthy. Because of this, the tools made to program and teach AI have come mostly from academic groups. In contrast with industry and government, academic incentives have historically been at odds with good software engineering practices. Historically, in the academic setting, a paper that beats a difficult benchmark by a few percentages using a novel cool idea that was coded up hastily has been much more rewarded than the careful planning and implementation of an API that is widely used. Further, academia (and especially AI), is divided into lots of different research <a href="http://www.dataversity.net/pedro-domingos-on-five-machine-learning-tribes/">groups and tribes</a> that each have their own way of naming and doing things as well as their own software for doing them. Only recently has this started to change, and mostly because of efforts from groups within industry.</p>
+
+<h2 id="a-mindset-to-rule-them-all">A mindset to rule them all</h2>
+
+<p>These days, after the initial deep learning hype, interest in AI from a now very well-established software industry is in an all-time high. The tech titans and various open source communities have now perfected the art of making scalable software and useful API abstractions that commoditize very complex tasks at a very big scale. In a short time frame, we have been presented with various flavors of &ldquo;computation graphs&rdquo; in many languages as well as APIs like scikit learn that make building machine learning systems an almost effortless endeavor (provided the right data and statistical insights of course). In its relatively short life, Google&rsquo;s Tensorflow has more than 64000 stars in github, with a farther outreach than it&rsquo;s academic ancestor, Theano. With APIs like Keras, a relative software engineering newbie can build neural nets in minutes with a few dozen lines of code. PyTorch, the Facebook competitor, has already accrued an impressive following (6.7K stars in github) despite the fact that the first alpha version was released barely a year ago (also worth mentioning, it looks like the PyTorch audience doesn&rsquo;t overlap as much as you would think with the Torch audience, the LUA predecessor of PyTorch). Microsoft and even Sony have similarily launched frameworks of their own. No matter which becomes the most adopted framework, the fact is that the mindset of translating a model to the computation graph abstraction is the true winner. These tools have become more and more adopted even throughout research groups in machine learning and beyond.</p>
+
+<h2 id="the-power-of-software-is-convention">The power of software is convention</h2>
+
+<p>The vast droves of programmers, young and old, hungry to learn data science and AI are now consuming this mindset. They now think in terms of autograds, layers, parameter servers, and computation graphs. These tools are becoming the lingua franca of applied predictive analytics and of a large and well-funded portion of the academic community. The power of such tools and their conventions is that development across all communities that adopt them becomes much more focused and progresses much faster &ndash; it effectively turns what could have been hours of an expert tweaking a model into some amount of GPU compute time. This is how software is eating AI.</p>
+
+<h2 id="full-circle">Full circle</h2>
+
+<p>But it <a href="https://blog.keras.io/the-future-of-deep-learning.html">won&rsquo;t stop there</a>. Using the TCP/IP stack as an analogy, we are still in the bottom layers of how to compose and optimize both machine learning models as well as how to optimally collect data to feed them. In the future, the &ldquo;application layers&rdquo; of this stack will obviate most of the AI dev tasks of today. It will likely reach a point when the best way of interacting with this stack as an end user will be through natural language. It will be then that AI will begin eating software.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Ouroboros.svg/2000px-Ouroboros.svg.png" alt="" />
+<em>Software eating itself (taken from the wikipedia article of Ouroboros)</em></p>
+
+                <br>
+		<p><a href="http://hyperparameter.space/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'hyperparameter';
+    var disqus_identifier = 'http:\/\/hyperparameter.space\/blog\/software-is-eating-ai\/';
+    var disqus_title = 'Software is eating AI';
+    var disqus_url = 'http:\/\/hyperparameter.space\/blog\/software-is-eating-ai\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-102686929-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+

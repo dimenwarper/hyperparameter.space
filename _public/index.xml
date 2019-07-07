@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>_index on Hyperparameter Space</title>
+    <link>http://hyperparameter.space/</link>
+    <description>Recent content in _index on Hyperparameter Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 11 Jun 2017 21:51:17 -0700</lastBuildDate>
+    
+	<atom:link href="http://hyperparameter.space/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A single-cell journey from mechanistic to descriptive modeling and back again</title>
+      <link>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</link>
+      <pubDate>Wed, 06 Sep 2017 23:50:07 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</guid>
+      <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.Hub.Queue(function() { // Fix  tags after MathJax finishes running. This is a // hack to overcome a shortcoming of Markdown. Discussion at // https://github.com/mojombo/jekyll/issues/199 var all = MathJax.Hub.getAllJax(), i; for(i = 0; i Whenever I start thinking about a dataset that I need to model or start reading on a new field, one of the first things I try to get a sense of is the level of mechanistic understanding that we currently have on the phenomena that generated the data, and how that mechanism relates (generalizes) to other phenomena.</description>
+    </item>
+    
+    <item>
+      <title>Software is eating AI</title>
+      <link>http://hyperparameter.space/blog/software-is-eating-ai/</link>
+      <pubDate>Wed, 19 Jul 2017 10:03:29 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/software-is-eating-ai/</guid>
+      <description>There&amp;rsquo;s a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: &amp;ldquo;Software is eating the world&amp;rdquo;. Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: &amp;ldquo;Software is eating the world, but AI is going to eat software&amp;rdquo;. In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach.</description>
+    </item>
+    
+    <item>
+      <title>When not to use deep learning</title>
+      <link>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</link>
+      <pubDate>Fri, 16 Jun 2017 21:17:31 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</guid>
+      <description>I know it&amp;rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&amp;rsquo;ve been thinking recently. It all started with a post in the Simply Stats blog by Jeff Leek on the caveats of using deep learning in the small sample size regime.</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>http://hyperparameter.space/about/</link>
+      <pubDate>Tue, 11 Apr 2017 16:23:34 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/about/</guid>
+      <description>My full name is Sergio Pablo Sanchez Cordero Gonzalez but I usually go (and publish) by Pablo Cordero. I&amp;rsquo;m currently a postdoc at UCSC&amp;rsquo;s systems biology group doing applied machine learning research in the context of cell biology and regenerative medicine, particularly looking at single-cell measurements. I also do consulting from time to time. My hobbies are natural language processing and deep learning. Check out the links to my github, scholar, mail, etc.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://hyperparameter.space/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/</guid>
+      <description>Machine learning is geometry; geometry is everything There&amp;rsquo;s a famous high-school/college chemistry textbook that goes by the title of &amp;ldquo;Chemistry, the central science&amp;rdquo;. It&amp;rsquo;s a hefty tome and I likely don&amp;rsquo;t recall even 1% of its content, but the statement in the title made an impression: if one would want to make such a bold claim &amp;ndash; that a field is central many others &amp;ndash; what arguments would be needed to back it up?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://hyperparameter.space/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/</guid>
+      <description>Learnlets: an attempt to seamlessly embed machine learning into algorithmic design There has been a lot of excitement lately on using machine learning to reinvent the way we write software, even to the point where one of the godfathers of deep learning wants to rebrand deep learning as differential programming. Indeed, why tell the computer exactly what to do? Just give it examples of what you want to do, set up a model, and let machine learning figure out the rest.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,62 @@
+baseurl             = "https://you.github.io/"
+builddrafts         = false
+canonifyurls        = true
+contentdir          = "content"
+languageCode        = "en-US"
+layoutdir           = "layouts"
+publishdir          = "public"
+author              = "Arthur Dent"
+title               = "Arthur Dent"
+pygmentsuseclasses  = true
+disqusshortname     = "cocoaexamplesite" # Comment out to disable Disqus.
+pluralizelisttitles = false
+googleAnalytics     = "UA-123-45"
+
+[permalinks]
+fixed = ":title/"
+blog  = "blog/:slug/"
+
+[[menu.main]]
+name                   = "Blog"
+weight                 = -120
+identifier             = "blog"
+url                    = "/blog/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -110
+identifier             = "about"
+url                    = "/about/"
+
+[[menu.main]]
+name                   = "Code"
+weight                 = -100
+identifier             = "code"
+url                    = "/code/"
+
+[params]
+latestpostscount       = 5                             # how many posts to display on the home page
+i18n_flags             = false                         # whether to display small country flags for available translations
+author                 = "Arthur Dent"
+cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
+dateform               = "Jan 2, 2006"
+dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
+description            = "Don't panic"
+email                  = "you@example.space"
+extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
+faviconfile            = "img/leaf.ico"
+github                 = "//github.com/you"
+highlightjs            = true
+lang                   = "en"
+linkedin               = "//linkedin.com/in/you"
+noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
+selfintro              = ""                            # appears in the site header when set to a non-empty string
+twitter                = "//twitter.com/you"
+# highlightjslanguages = ["go"]                        # additional languages not included in the "common" set
+
+avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
+# gravatar             = ""                # do not use in the same time as avatar
+
+# The following are DEPRECATED.
+gatracker              = "XYZ" # use googleAnalytics instead
+initials               = "ad"  # displayed on single post page; deprecated in v0.3.0.

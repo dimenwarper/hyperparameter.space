@@ -42,8 +42,14 @@ One of the banes of (cell free) in vitro work in biochemistry is (the lack of) c
 
 If there is one pattern of understanding that repeats itself over and over in molecular biology, it's that everything is far more dynamical than we realized. As Kornberg puts it "DNA was regarded as a rigid rod devoid of personality and plasticity...Then we came to realize that the shape of DNA is dynamic in ways essential for its multiple functions...Especially noteworthy is breathing, the transient thermodynamic-driven opening (melting) of the duplex that facilitates the binding of specific proteins such as the helicase responsible for priming and the onset of replication.". In the same way, single-cell measurements have revealed the twisted transcriptional paths that cells undergo from one cell state to the next, revealing a continuum rather than discrete cell states. In the most desired end, full understanding of a biological function will be fully distilled in the differential equations of its dynamics.
 
-### 
+### How is our mechanism altered or ablated genetically? 
 *Commandment: USE REVERSE GENETICS AND GENOMICS*
+
+The ability to go from enzyme function to protein sequence to gene and then probing the enzymes function by changing the underlying gene was something magical in Kornberg's eyes. Indeed, being able to predict how genetic alterations in the system's components affects function is an ultimate test of understanding it. Molecular tools have advanced considerably in the past decade and we now have CRISPR and friends to edit genes as we please to understand downstream function. Even in more challenging contexts, large-scale efforts to collate genetic and phenotypic data, ranging from thousands of genomic and metagenomic sequencing projects (metagenomes, microbiomes, you name it!), and clinical biobanks provide a solid foundation to test hypothesis on almost any organism that we know. 
+
+
+### On what assumptions does our mechanism rest and what others does it support?
+*Commandment: EMPLOY ENZYMES AS UNIQUE REAGENTS*
 
 
 

@@ -47,9 +47,10 @@ If there is one pattern of understanding that repeats itself over and over in mo
 
 The ability to go from enzyme function to protein sequence to gene and then probing the enzymes function by changing the underlying gene was something magical in Kornberg's eyes. Indeed, being able to predict how genetic alterations in the system's components affects function is an ultimate test of understanding it. Molecular tools have advanced considerably in the past decade and we now have CRISPR and friends to edit genes as we please to understand downstream function. Even in more challenging contexts, large-scale efforts to collate genetic and phenotypic data, ranging from thousands of genomic and metagenomic sequencing projects (metagenomes, microbiomes, you name it!), and clinical biobanks provide a solid foundation to test hypothesis on almost any organism that we know. 
 
-
-### On what assumptions does our mechanism rest and what others does it support?
+### What new questions does our mechanism allow to us to answer?
 *Commandment: EMPLOY ENZYMES AS UNIQUE REAGENTS*
+
+In the last commandment, Kornberg lays out why modern biochemistry became so powerful: with each new enzyme discovered, new functions become possible, and avenues for discovering new enzymes open up. In a virtuous feedback loop, enzymes aid discovering other enzymes that yield new reactions to be repurposed for engineering. Understanding our mechanism in isolation is only part of the journey. Rather, grasping how it fits in the grand scheme of things, what other questions it allows us to answer, and better yet, how can it be repurposed, engineered, and tweaked is the true mark of the maturity of understanding. 
 
 
 

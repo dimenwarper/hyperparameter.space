@@ -1,7 +1,7 @@
 +++
 date = "2020-06-26"
 draft = false
-title = "How do we test our molecular understanding? From ten commandments to ten questions"
+title = "How do we measure our molecular understanding in biology? From ten commandments to ten questions"
 
 +++
 

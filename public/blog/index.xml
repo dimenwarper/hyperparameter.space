@@ -6,10 +6,19 @@
     <description>Recent content in Blog on Hyperparameter Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 05 Jul 2019 14:32:16 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://hyperparameter.space/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How do we test our molecular understanding? From ten commandments to ten questions</title>
+      <link>http://hyperparameter.space/blog/how-do-we-test-our-molecular-understanding-from-ten-commandments-to-ten-questions/</link>
+      <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/how-do-we-test-our-molecular-understanding-from-ten-commandments-to-ten-questions/</guid>
+      <description>I recently read an interesting entry in the Nintil blog that tries to frame our understanding of biology by asking several key questions. The questions were derived/inspired from Tinberg&amp;rsquo;s four questions, which are four general directions one can take, ( (evolutionary, proximate or individual) X (ontogenic, mechanistic) ), when studying biological traits. The questions were mainly written with animal behavior in mind (Tinberg was an ethologist) but are broadly applicable to any biological concept.</description>
+    </item>
     
     <item>
       <title>Sense and sensitivity (and specificty and utility)</title>

@@ -14,21 +14,8 @@
 <meta property="og:description" content="I really can’t help but smile when hearing folks talking about causal models recently. It looks like causal models are making a comeback! This is a pleasant surprise to me, since I’ve always been a fan of causal inference and I wasn’t sure Judea Pearl’s “Book of Why” was going to catch up or not. But now we even have Pearl on Twitter and there’s more light being shed on work that leverages causal models for various problems or that scales them to very high dimensional settings." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://hyperparameter.space/blog/causal-models-make-a-comeback/" />
-
-
-
 <meta property="article:published_time" content="2018-12-23T14:32:16-08:00"/>
 <meta property="article:modified_time" content="2018-12-23T14:32:16-08:00"/>
-
-
-
-
-
-
-
-
-
-
 
 
 <title>
@@ -83,9 +70,9 @@
 
 
     
-    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2018-12-30%2014%3a32%3a27.965497093%20-0800%20PST">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2018-12-30%2014%3a32%3a27.965497093%20-0800%20PST">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2018-12-30%2014%3a32%3a27.965497093%20-0800%20PST">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2019-07-08%2009%3a19%3a37.185075%20-0700%20PDT%20m%3d%2b0.110926592">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2019-07-08%2009%3a19%3a37.185075%20-0700%20PDT%20m%3d%2b0.110926592">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2019-07-08%2009%3a19%3a37.185075%20-0700%20PDT%20m%3d%2b0.110926592">
     
 
 
@@ -103,14 +90,17 @@
 
 
 
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-102686929-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-102686929-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 </head>
@@ -311,109 +301,109 @@ ga('send', 'pageview');
 
 <p>Where $MT$ is the measurement type. Notice, that this is simply weighing our conditional of disease to drug and $MT$ by a prior that we can put on the measurement type. In a way, we can use this to control how much we believe in that type of measurement (e.g. you might believe your mouse model more than your cell line model). Assuming linear relationships and Gaussian likelihoods, this model is easy to code and compute &ndash; it&rsquo;s simply a pair of least squares regresion problems. But what if we had a more complex model where we think the relationships are non-linear? We can leverage a probabilistic programming framework like Edward2 <a href="https://arxiv.org/abs/1710.10742">for this purpose</a>, using neural networks as non-linear regressors:</p>
 
-<div class="highlight"><pre><code class="language-py3" data-lang="py3"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="highlight"><pre class="chroma"><code class="language-py3" data-lang="py3"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
 <span class="kn">from</span> <span class="nn">tensorflow_probability</span> <span class="k">import</span> <span class="n">edward2</span> <span class="k">as</span> <span class="n">ed</span>
-<span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span> <span class="c"># -&gt; for notebooks you might want to reset the graph</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span> <span class="c1"># -&gt; for notebooks you might want to reset the graph</span>
 
-<span class="c"># This follows in the spirit of Tran and Blei&#39;s work on implicit causal models</span>
-<span class="c"># in GWAS, https://arxiv.org/abs/1710.10742</span>
+<span class="c1"># This follows in the spirit of Tran and Blei&#39;s work on implicit causal models</span>
+<span class="c1"># in GWAS, https://arxiv.org/abs/1710.10742</span>
 
 
-<span class="c"># Declare the types of measurements we can have, as in the text above</span>
-<span class="c"># 1. Target knockout stands for performing knockout perturbation in e.g. a cell</span>
-<span class="c">#    line of one or many of the drug&#39;s targets and measuring the response</span>
-<span class="c"># 2. Mouse or 3. cell line models of the disease and their response to the</span>
-<span class="c">#    presence of the drug</span>
+<span class="c1"># Declare the types of measurements we can have, as in the text above</span>
+<span class="c1"># 1. Target knockout stands for performing knockout perturbation in e.g. a cell</span>
+<span class="c1">#    line of one or many of the drug&#39;s targets and measuring the response</span>
+<span class="c1"># 2. Mouse or 3. cell line models of the disease and their response to the</span>
+<span class="c1">#    presence of the drug</span>
 
-<span class="n">MEASUREMENT_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;target_knockout&#39;</span> <span class="p">,</span> 
-                     <span class="s">&#39;mouse_drug_treatment&#39;</span><span class="p">,</span> 
-                     <span class="s">&#39;cell_line_treatment&#39;</span><span class="p">]</span>
+<span class="n">MEASUREMENT_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;target_knockout&#39;</span> <span class="p">,</span> 
+                     <span class="s1">&#39;mouse_drug_treatment&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;cell_line_treatment&#39;</span><span class="p">]</span>
 
-<span class="c"># Each measurement type will have different number of features, we will need</span>
-<span class="c"># to &quot;put them on the same page&quot; and collapse/encode them to a standard number</span>
-<span class="c"># of features -- let&#39;s do 20</span>
+<span class="c1"># Each measurement type will have different number of features, we will need</span>
+<span class="c1"># to &#34;put them on the same page&#34; and collapse/encode them to a standard number</span>
+<span class="c1"># of features -- let&#39;s do 20</span>
 <span class="n">NUM_FEATURES</span> <span class="o">=</span> <span class="mi">20</span>
 
-<span class="c"># Function to encode our measurement types to a vector. We use a simple one-hot</span>
-<span class="c"># encoding here.</span>
+<span class="c1"># Function to encode our measurement types to a vector. We use a simple one-hot</span>
+<span class="c1"># encoding here.</span>
 <span class="k">def</span> <span class="nf">measurement_type_encoder</span><span class="p">(</span><span class="n">measurement_type</span><span class="p">,</span>
                              <span class="n">num_samples</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">one_hot</span><span class="p">([</span><span class="n">MEASUREMENT_TYPES</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">measurement_type</span><span class="p">)]</span><span class="o">*</span><span class="n">num_samples</span><span class="p">,</span>
                      <span class="n">depth</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">MEASUREMENT_TYPES</span><span class="p">))</span>
 
-<span class="c"># Encoder to standardize our number of features per measurement type. </span>
-<span class="c"># We use a simple, dense neural network for this purpose. </span>
-<span class="c"># Alternatively, we could pre-encode the different measurement types via some </span>
-<span class="c"># transfer learning framework (e.g a la word embeddings for NLP)</span>
+<span class="c1"># Encoder to standardize our number of features per measurement type. </span>
+<span class="c1"># We use a simple, dense neural network for this purpose. </span>
+<span class="c1"># Alternatively, we could pre-encode the different measurement types via some </span>
+<span class="c1"># transfer learning framework (e.g a la word embeddings for NLP)</span>
 <span class="k">def</span> <span class="nf">drug_measurement_encoder</span><span class="p">(</span><span class="n">drug_measurement</span><span class="p">,</span>
                              <span class="n">measurement_type</span><span class="p">):</span>
   <span class="n">N</span> <span class="o">=</span> <span class="n">drug_measurement</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">as_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">drug_measurement</span><span class="p">,</span> 
                       <span class="mi">64</span><span class="p">,</span> 
                       <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s">&#39;_layer_1&#39;</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s1">&#39;_layer_1&#39;</span><span class="p">,</span>
                       <span class="n">reuse</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">AUTO_REUSE</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">drug_measurement</span><span class="p">,</span> 
                       <span class="mi">64</span><span class="p">,</span> 
                       <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s">&#39;_layer_2&#39;</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s1">&#39;_layer_2&#39;</span><span class="p">,</span>
                       <span class="n">reuse</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">AUTO_REUSE</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> 
                       <span class="n">NUM_FEATURES</span><span class="p">,</span>
-                      <span class="n">activation</span><span class="o">=</span><span class="k">None</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s">&#39;_layer_3&#39;</span><span class="p">,</span>
+                      <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="n">measurement_type</span> <span class="o">+</span> <span class="s1">&#39;_layer_3&#39;</span><span class="p">,</span>
                       <span class="n">reuse</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">AUTO_REUSE</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="n">N</span><span class="p">,</span> <span class="n">NUM_FEATURES</span><span class="p">])</span>
 
-<span class="c"># The measurement_type -&gt; drug dependency</span>
+<span class="c1"># The measurement_type -&gt; drug dependency</span>
 <span class="k">def</span> <span class="nf">drug_dependencies</span><span class="p">(</span><span class="n">encoded_measurement_types</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">encoded_measurement_types</span><span class="p">,</span>
                       <span class="mi">64</span><span class="p">,</span> 
                       <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;drug_meas_type_layer_1&#39;</span><span class="p">)</span>
+                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;drug_meas_type_layer_1&#39;</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">,</span>
                       <span class="n">NUM_FEATURES</span><span class="p">,</span>
-                      <span class="n">activation</span><span class="o">=</span><span class="k">None</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;drug_meas_type_layer_2&#39;</span><span class="p">)</span>
+                      <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;drug_meas_type_layer_2&#39;</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="n">N</span><span class="p">,</span> <span class="n">NUM_FEATURES</span><span class="p">])</span>
   
-<span class="c"># The drug &amp; measurement_type -&gt; disease model</span>
+<span class="c1"># The drug &amp; measurement_type -&gt; disease model</span>
 <span class="k">def</span> <span class="nf">drug_disease_model</span><span class="p">(</span><span class="n">encoded_measurement_types</span><span class="p">):</span>
   <span class="n">N</span> <span class="o">=</span> <span class="n">encoded_measurement_types</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">as_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
   
-  <span class="c"># This will later be linked to the encoded drug measurement data</span>
+  <span class="c1"># This will later be linked to the encoded drug measurement data</span>
   <span class="n">drug_var</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">drug_dependencies</span><span class="p">(</span><span class="n">encoded_measurement_types</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
                        <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                       <span class="n">name</span><span class="o">=</span><span class="s">&#39;drug_dependencies&#39;</span><span class="p">)</span>
+                       <span class="n">name</span><span class="o">=</span><span class="s1">&#39;drug_dependencies&#39;</span><span class="p">)</span>
 
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">drug_var</span><span class="p">,</span> 
                       <span class="mi">64</span><span class="p">,</span> 
                       <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> 
-                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;disease_response_layer_1&#39;</span><span class="p">)</span>
+                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;disease_response_layer_1&#39;</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> 
                       <span class="nb">len</span><span class="p">(</span><span class="n">MEASUREMENT_TYPES</span><span class="p">),</span> 
                       <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;disease_response_layer_2&#39;</span><span class="p">)</span>
+                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;disease_response_layer_2&#39;</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">encoded_measurement_types</span> <span class="o">+</span> <span class="p">[</span><span class="n">h</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> 
                       <span class="mi">1</span><span class="p">,</span> 
-                      <span class="n">activation</span><span class="o">=</span><span class="k">None</span><span class="p">,</span>
-                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;disease_response_layer_3&#39;</span><span class="p">)</span>
+                      <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;disease_response_layer_3&#39;</span><span class="p">)</span>
   <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="n">N</span><span class="p">])</span>
   
-  <span class="c"># This will later be linked to the disease response data</span>
-  <span class="k">return</span> <span class="n">ed</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;disease_response&#39;</span><span class="p">)</span>
+  <span class="c1"># This will later be linked to the disease response data</span>
+  <span class="k">return</span> <span class="n">ed</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;disease_response&#39;</span><span class="p">)</span>
 
  
 
-<span class="c"># Generate some data. In the real world we would have to preprocess the data of</span>
-<span class="c"># each measurement type to put them on the same dynamic range/scale.</span>
+<span class="c1"># Generate some data. In the real world we would have to preprocess the data of</span>
+<span class="c1"># each measurement type to put them on the same dynamic range/scale.</span>
 
-<span class="n">measurement_types</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;target_knockout&#39;</span><span class="p">,</span> 
-                     <span class="s">&#39;target_knockout&#39;</span><span class="p">,</span> 
-                     <span class="s">&#39;mouse_drug_treatment&#39;</span><span class="p">,</span>
-                     <span class="s">&#39;cell_line_treatment&#39;</span><span class="p">]</span>                       
+<span class="n">measurement_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;target_knockout&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;target_knockout&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;mouse_drug_treatment&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;cell_line_treatment&#39;</span><span class="p">]</span>                       
 <span class="n">num_samples</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
 <span class="n">num_dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 
@@ -425,7 +415,7 @@ ga('send', 'pageview');
   <span class="n">disease_response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="n">num_samples</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span><span class="p">]))</span>
   
   
-<span class="c"># Encode the measurement types and drug measurements</span>
+<span class="c1"># Encode the measurement types and drug measurements</span>
 
 <span class="n">drug_meas_enc</span><span class="p">,</span> <span class="n">meas_type_enc</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">dm</span><span class="p">,</span> <span class="n">mt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">drug_measurements</span><span class="p">,</span> <span class="n">measurement_types</span><span class="p">):</span>
@@ -435,8 +425,8 @@ ga('send', 'pageview');
 <span class="n">encoded_measurement_types</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">meas_type_enc</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">encoded_drug_measurements</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">drug_meas_enc</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-<span class="c"># Do a test run of the generative model to see that we wired everything </span>
-<span class="c"># correctly.</span>
+<span class="c1"># Do a test run of the generative model to see that we wired everything </span>
+<span class="c1"># correctly.</span>
 
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
   <span class="n">disease_response_</span> <span class="o">=</span> <span class="n">drug_disease_model</span><span class="p">(</span><span class="n">encoded_measurement_types</span><span class="p">)</span>
@@ -446,16 +436,16 @@ ga('send', 'pageview');
   <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">disease_response_</span><span class="p">)</span>
   
 
-<span class="c"># We can then learn the parameters in the generative model by linking</span>
-<span class="c"># the encoded drug measurements to the drug_dependency variable in the </span>
-<span class="c"># computation graph and the disease_response data to the disease_response </span>
-<span class="c"># variable. </span>
-<span class="c"># In edward2 this is typically done by first generating the log joint prob </span>
-<span class="c"># function via a built-in helper...</span>
+<span class="c1"># We can then learn the parameters in the generative model by linking</span>
+<span class="c1"># the encoded drug measurements to the drug_dependency variable in the </span>
+<span class="c1"># computation graph and the disease_response data to the disease_response </span>
+<span class="c1"># variable. </span>
+<span class="c1"># In edward2 this is typically done by first generating the log joint prob </span>
+<span class="c1"># function via a built-in helper...</span>
 
 <span class="n">log_joint</span> <span class="o">=</span> <span class="n">ed</span><span class="o">.</span><span class="n">make_log_joint_fn</span><span class="p">(</span><span class="n">drug_disease_model</span><span class="p">)</span>
 
-<span class="c"># ... then wrapping that up in a function to optimize</span>
+<span class="c1"># ... then wrapping that up in a function to optimize</span>
 <span class="k">def</span> <span class="nf">log_joint_to_optimize</span><span class="p">(</span><span class="n">measurement_type_layers</span><span class="p">,</span> 
                           <span class="n">disease_response_layers</span><span class="p">):</span>
   <span class="n">param_mapping</span> <span class="o">=</span> <span class="p">{}</span>
@@ -466,19 +456,17 @@ ga('send', 'pageview');
   <span class="k">for</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">disease_response_layers</span><span class="p">:</span>
     <span class="n">param_mapping</span><span class="p">[</span><span class="n">layer_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">layer</span>
    
-  <span class="c"># Link our remaining data to the relevant variables</span>
-  <span class="n">param_mapping</span><span class="p">[</span><span class="s">&#39;drug_dependencies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoded_drug_measurements</span>
-  <span class="n">param_mapping</span><span class="p">[</span><span class="s">&#39;disease_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">disease_response</span>
+  <span class="c1"># Link our remaining data to the relevant variables</span>
+  <span class="n">param_mapping</span><span class="p">[</span><span class="s1">&#39;drug_dependencies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoded_drug_measurements</span>
+  <span class="n">param_mapping</span><span class="p">[</span><span class="s1">&#39;disease_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">disease_response</span>
   
   <span class="k">return</span> <span class="n">log_joint</span><span class="p">(</span><span class="n">drug_measurements</span><span class="p">,</span>
                    <span class="n">measurement_types</span><span class="p">,</span>
                    <span class="o">**</span><span class="n">param_mapping</span><span class="p">)</span>
-<span class="c"># ...</span>
-<span class="c"># ...</span>
-<span class="c"># Use log_joint_to_optimize with your favorite approach e.g. sampling with MCMC</span>
-<span class="c"># or a maximum a posteriori via built-in optimizer, etc. ...</span>
-</code></pre></div>
-
+<span class="c1"># ...</span>
+<span class="c1"># ...</span>
+<span class="c1"># Use log_joint_to_optimize with your favorite approach e.g. sampling with MCMC</span>
+<span class="c1"># or a maximum a posteriori via built-in optimizer, etc. ...</span></code></pre></div>
 
 <p>There are lots of things we can do to fine tune our model (e.g. adding priors to our parameters) and to scale it to really big datasets, but these are all tasks of statistical modeling. Our causal model remains the same simple triangle above.</p>
 
@@ -516,20 +504,25 @@ ga('send', 'pageview');
             <br>
             <div class="disqus">
                 <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'hyperparameter';
-    var disqus_identifier = 'http:\/\/hyperparameter.space\/blog\/causal-models-make-a-comeback\/';
-    var disqus_title = 'Causal models make a comeback';
-    var disqus_url = 'http:\/\/hyperparameter.space\/blog\/causal-models-make-a-comeback\/';
-
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hyperparameter" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </div>
         </div>
     </div>
@@ -537,12 +530,16 @@ ga('send', 'pageview');
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-102686929-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-102686929-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

@@ -12,6 +12,23 @@
     
     
     <item>
+      <title>Sense and sensitivity (and specificty and utility)</title>
+      <link>http://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</link>
+      <pubDate>Fri, 05 Jul 2019 14:32:16 -0800</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</guid>
+      <description>A recent tweet from Ash Jogalekar got me thinking.
+List of compounds medicinal chemists wouldn&amp;#39;t have bothered to pursue because they didn&amp;#39;t fit &amp;quot;intuition&amp;quot; about &amp;quot;druglike&amp;quot; rules
+Aspirin
+Metformin ($400M revenue)
+Cyclosporin (&amp;gt;$1B)
+Dimethyl fumarate (&amp;gt;$4B)
+In drug discovery, there will always be enough exceptions to the rules
+&amp;mdash; Ash Jogalekar (@curiouswavefn) June 24, 2019 
+Translating it to more &amp;lsquo;machine-learning-ish&amp;rsquo; language this means that the problem of predicting ultimately successful drug candidates is the pathological case where the cost of your predictions is really high and the rewards are higher but concentrated in a space defined by unmeasured covariates (a molecule might be a terrible drug for one indication but a really good drug for another and the space of possible/probable indications is vast and for the most part unknown).</description>
+    </item>
+    
+    <item>
       <title>Causal models make a comeback</title>
       <link>http://hyperparameter.space/blog/causal-models-make-a-comeback/</link>
       <pubDate>Sun, 23 Dec 2018 14:32:16 -0800</pubDate>

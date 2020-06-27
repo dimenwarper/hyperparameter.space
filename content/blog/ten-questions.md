@@ -1,5 +1,5 @@
 +++
-date = "2020-07-24T14:32:16-08:00"
+date = "2020-06-26"
 draft = false
 title = "How do we test our molecular understanding? From ten commandments to ten questions"
 

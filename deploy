@@ -2,6 +2,7 @@
 
 cp -r svg/* static/img
 rm -rf public
+cp -r static/apps/ public/
 hugo --theme=cocoa
 cd public
-scp -o PubkeyAuthentication=no  -r * ofworlds@ofworldsandwoes.com:public_html/hyperparameter.space/
+scp -o PubkeyAuthentication=no  -r * ofworlds@default.ofworldsandwoes.com:public_html/hyperparameter.space/

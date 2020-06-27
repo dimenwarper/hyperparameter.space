@@ -14,21 +14,8 @@
 <meta property="og:description" content="There&rsquo;s a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: &ldquo;Software is eating the world&rdquo;. Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: &ldquo;Software is eating the world, but AI is going to eat software&rdquo;. In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://hyperparameter.space/blog/software-is-eating-ai/" />
-
-
-
 <meta property="article:published_time" content="2017-07-19T10:03:29-07:00"/>
 <meta property="article:modified_time" content="2017-07-19T10:03:29-07:00"/>
-
-
-
-
-
-
-
-
-
-
 
 
 <title>
@@ -83,9 +70,9 @@
 
 
     
-    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2018-12-30%2014%3a32%3a27.966322346%20-0800%20PST">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2018-12-30%2014%3a32%3a27.966322346%20-0800%20PST">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2018-12-30%2014%3a32%3a27.966322346%20-0800%20PST">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2019-07-08%2009%3a19%3a37.113213%20-0700%20PDT%20m%3d%2b0.039064922">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2019-07-08%2009%3a19%3a37.113213%20-0700%20PDT%20m%3d%2b0.039064922">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2019-07-08%2009%3a19%3a37.113213%20-0700%20PDT%20m%3d%2b0.039064922">
     
 
 
@@ -103,14 +90,17 @@
 
 
 
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-102686929-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-102686929-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
 </head>
@@ -258,20 +248,25 @@ ga('send', 'pageview');
             <br>
             <div class="disqus">
                 <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'hyperparameter';
-    var disqus_identifier = 'http:\/\/hyperparameter.space\/blog\/software-is-eating-ai\/';
-    var disqus_title = 'Software is eating AI';
-    var disqus_url = 'http:\/\/hyperparameter.space\/blog\/software-is-eating-ai\/';
-
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hyperparameter" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
             </div>
         </div>
     </div>
@@ -279,12 +274,16 @@ ga('send', 'pageview');
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-102686929-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-102686929-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

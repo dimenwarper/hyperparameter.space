@@ -33,7 +33,7 @@ a:active {
 }
 html {
   height: 100%;
-  font-size: 16px;
+  font-size: 17px;
 }
 body {
   display: -webkit-flex;
@@ -58,7 +58,7 @@ body {
   font-weight: 400;
   font-family: 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
   color: #111;
-  line-height: 1.6;
+  line-height: 2em;
   text-rendering: optimizeLegibility !important;
 }
 @media (min-width: 600px) {
@@ -104,7 +104,7 @@ section {
     padding: 0 16px;
     margin-left: 100px;
     margin-right: 100px;
-    max-width: 750px;
+    max-width: 950px;
   }
 }
 section.header {

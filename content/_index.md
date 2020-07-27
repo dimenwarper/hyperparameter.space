@@ -4,4 +4,4 @@ draft = false
 title = "_index"
 
 +++
-Welcome to my blog! I write mainly about computational biology (focused on genomics, particularly of the single-cell kind) and machine learning.
+Welcome to my blog! I like to read, write, and code on the interface of machine learning, statistics, and frontier experimental methods in biology. I've written on single cell and causality stuff but I'm currently starting to focus more on optimal/bayesian experimentation and drug discovery.

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>How convincing your experimental approach is according to Bayes</title>
+      <link>http://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</link>
+      <pubDate>Sat, 11 Jul 2020 22:10:24 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</guid>
+      <description>Experimental approaches in biology tend to fall within broader conceptual frameworks that guide the logic of the experimental design. Each of these frameworks carries both a cost and some expected quality on the knowledge obtained from the results. For example, on one end we may have multifactorial perturbation frameworks where we collect samples with little or no control over the perturbations effected on each samples and we attempt to infer what variables are correlated in the system.</description>
+    </item>
+    
+    <item>
       <title>How do we measure our molecular understanding in biology? From ten commandments to ten questions</title>
       <link>http://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>

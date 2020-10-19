@@ -8,6 +8,8 @@ publishdir          = "public"
 author              = "Pablo Cordero"
 title               = "Hyperparameter Space"
 pygmentsuseclasses  = true
+pygmentsCodefences = true
+pygmentsstyle       = "dracula"
 disqusshortname     = "hyperparameter" # Comment out to disable Disqus.
 pluralizelisttitles = false
 googleAnalytics     = "UA-102686929-1"
@@ -41,7 +43,7 @@ email                  = "dimenwarper@gmail.com"
 #faviconfile            = "img/leaf.ico"
 github                 = "//github.com/dimenwarper"
 scholar                = "//scholar.google.com/citations?user=nGEthnYAAAAJ&hl=en"
-highlightjs            = true
+highlightjs            = false
 lang                   = "en"
 linkedin               = "//linkedin.com/in/sergio-pablo-cordero/"
 noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts

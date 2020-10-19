@@ -621,7 +621,6 @@ section.main .content .markdown code,
 section.main .content .markdown pre {
   font-family: 'Ubuntu Mono', 'Menlo', monospace;
   font-size: 1rem;
-  background-color: #f7f7f7;
 }
 section.main .content .markdown code {
   /* enclosed by single backtick (`) */
@@ -743,7 +742,7 @@ img + em {
 img[src$='#center']
 {
   display: block;
-  padding-left: 90px; 
+  padding-left: 90px;
 }
 
 img[src$='#floatleft']
@@ -777,4 +776,3 @@ code .MathJax {
 pre, .highlight pre {
  overflow: scroll;
 }
-

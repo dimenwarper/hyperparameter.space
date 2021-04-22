@@ -377,7 +377,7 @@ section.main .content .title-container .initials a:hover {
   color: #333;
 }
 section.main .content .page-heading {
-  font-size: 18px;
+  font-size: 25px;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   font-weight: 700;
@@ -603,11 +603,11 @@ section.main .content .markdown h1 {
   margin-bottom: 2rem;
 }
 section.main .content .markdown h2 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 1.5rem;
 }
 section.main .content .markdown h3 {
-  font-size: 1rem;
+  font-size: 1.15rem;
   margin-bottom: 1rem;
 }
 section.main .content .markdown h4,
@@ -735,7 +735,7 @@ section.main .content .markdown tbody tr:nth-child(odd) th {
 
 img + em {
   display: block;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -775,4 +775,12 @@ code .MathJax {
 
 pre, .highlight pre {
  overflow: scroll;
+}
+
+.expand-label, .expand-content {
+  background-color: #f0f0f5;
+}
+
+.expand-label {
+  font-weight: bold;
 }

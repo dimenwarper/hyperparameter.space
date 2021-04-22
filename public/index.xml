@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>An unorthodox path for implementing a probabilistic programming language</title>
+      <link>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</link>
+      <pubDate>Sun, 18 Oct 2020 14:51:18 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</guid>
+      <description>I first found out about probabilistic programming in my later years of grad school when, looking for good tutorial on Bayesian inference, I stumbled upon the excellent Bayesian Methods for Hackers, which heavily features PyMC. I was (and in many ways I still am) a neophyte Bayesian methods, having ignored the quasi-religious sermons that my friends in operations research and actuarial sciences gave to any passer by, swearing by the name of simulation with strange and arcane words ending in UGS and AGS.</description>
+    </item>
+    
+    <item>
       <title>The amazing world of biocatalytic retrosynthesis</title>
       <link>http://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</link>
       <pubDate>Thu, 16 Jul 2020 11:48:26 -0700</pubDate>

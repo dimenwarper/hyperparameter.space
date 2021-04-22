@@ -1,0 +1,10 @@
+<span class="expand">
+    <span class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').html(function () {return $h.next('div').is(':visible') ? '{{.Get 2 | default `[-]`}}' : '{{.Get 1 | default `[+]`}}';});});">
+        {{.Get 0}}
+        <i>{{.Get 1 | default `[+]`}}</i>
+    </span>
+    <div class="expand-content" style="display: none; margin: 0px 0px 0px">
+        {{.Inner | safeHTML}}
+    </div>
+    </br>
+</span>

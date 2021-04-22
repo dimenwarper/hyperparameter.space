@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</loc>
+    <lastmod>2020-10-18T14:51:18-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://hyperparameter.space/blog/</loc>
-    <lastmod>2020-07-16T11:48:26-07:00</lastmod>
+    <lastmod>2020-10-18T14:51:18-07:00</lastmod>
     <priority>0</priority>
   </url>
   

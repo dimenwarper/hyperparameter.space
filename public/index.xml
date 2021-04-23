@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>This is (not) a machine</title>
+      <link>http://hyperparameter.space/blog/this-is-not-a-machine/</link>
+      <pubDate>Sun, 18 Apr 2021 14:51:18 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/this-is-not-a-machine/</guid>
+      <description>Why the machine metaphor has failed in biology and software and the concepts that are replacing it
+Much progress has been made in laboratory and computational techniques to probe on populations of cells, molecules, neurons, and training of machine learning models. Thanks to these advances, detailed data of both the dynamics and causal relationships in complex systems is beginning to be commonplace. I believe that the conceptual frameworks used to tackle these data are beginning to converge in several fronts.</description>
+    </item>
+    
+    <item>
       <title>An unorthodox path for implementing a probabilistic programming language</title>
       <link>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</link>
       <pubDate>Sun, 18 Oct 2020 14:51:18 -0700</pubDate>

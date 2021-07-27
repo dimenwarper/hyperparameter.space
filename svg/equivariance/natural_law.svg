@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="356.08615mm"
+   height="45.650394mm"
+   viewBox="0 0 356.08615 45.650394"
+   version="1.1"
+   id="svg2032"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   sodipodi:docname="natural_law.svg"
+   inkscape:export-filename="/Users/pablo/Documents/hyperparameter.space/static/img/equivariance/natural_law.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2026">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2778">
+      <stop
+         style="stop-color:#ff9955;stop-opacity:1;"
+         offset="0"
+         id="stop2774" />
+      <stop
+         style="stop-color:#ff9955;stop-opacity:0;"
+         offset="1"
+         id="stop2776" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2770">
+      <stop
+         style="stop-color:#afdde9;stop-opacity:1;"
+         offset="0"
+         id="stop2766" />
+      <stop
+         style="stop-color:#afdde9;stop-opacity:0;"
+         offset="1"
+         id="stop2768" />
+    </linearGradient>
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="32.606876"
+       height="19.243406"
+       id="rect2058" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="128.28937"
+       height="21.916101"
+       id="rect2058-0" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="32.606876"
+       height="19.243406"
+       id="rect2071" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="187.6232"
+       height="94.078873"
+       id="rect2058-7" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="32.606876"
+       height="19.243406"
+       id="rect2071-2" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="77.508156"
+       height="21.381561"
+       id="rect2058-8" />
+    <rect
+       x="-42.763123"
+       y="49.712132"
+       width="32.606876"
+       height="19.243406"
+       id="rect2071-1" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2770"
+       id="linearGradient2772"
+       x1="22.450642"
+       y1="109.84777"
+       x2="187.4288"
+       y2="109.84777"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.87540447,0,0,0.87540447,10.22222,13.779525)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2778"
+       id="linearGradient2780"
+       x1="186.2502"
+       y1="96.116669"
+       x2="22.450642"
+       y2="91.94072"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.87540447,0,0,0.87540447,10.22222,13.779525)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="843.0869"
+     inkscape:cy="193.27596"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1252"
+     inkscape:window-height="943"
+     inkscape:window-x="660"
+     inkscape:window-y="127"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata2029">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(89.564546,-82.104437)">
+    <path
+       style="fill:url(#linearGradient2772);fill-opacity:1;stroke:none;stroke-width:0.346382px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 174.29824,125.61667 H 29.875611 V 94.26484 Z"
+       id="path2034" />
+    <path
+       style="fill:url(#linearGradient2780);fill-opacity:1;stroke:none;stroke-width:0.354412px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 30.584895,85.654116 H 174.62064 v 32.910564 z"
+       id="path2034-1" />
+    <text
+       xml:space="preserve"
+       id="text2056"
+       style="font-style:normal;font-weight:normal;font-size:10.58329999999999949px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2058);fill:#0044aa;fill-opacity:1;stroke:none;"
+       transform="matrix(0.87540447,0,0,0.87540447,82.284653,65.720629)"><tspan
+         x="-42.763672"
+         y="59.368356"><tspan
+           style="fill:#0044aa">Data</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text2056-1"
+       style="font-style:normal;font-weight:normal;font-size:10.58329999999999949px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2058-0);fill:#803300;fill-opacity:1;stroke:none;"
+       transform="matrix(0.80062574,0,0,0.87540447,111.63518,43.25165)"><tspan
+         x="-42.763672"
+         y="59.368356"><tspan
+           style="fill:#803300">Symmetry constraints</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text2056-9"
+       style="font-style:normal;font-weight:normal;font-size:10.58329999999999949px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2058-7);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.87540447,0,0,0.87540447,-30.747474,42.783712)"><tspan
+         x="-42.763672"
+         y="59.368356"><tspan>   Simple model 
+</tspan></tspan><tspan
+         x="-42.763672"
+         y="72.597482"><tspan>           +
+</tspan></tspan><tspan
+         x="-42.763672"
+         y="85.826608"><tspan>Data Augmentation</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text2056-4"
+       style="font-style:normal;font-weight:normal;font-size:10.58329999999999949px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2058-8);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.87540447,0,0,0.87540447,225.68248,53.546284)"><tspan
+         x="-42.763672"
+         y="59.368356"><tspan>Natural Law</tspan></tspan></text>
+  </g>
+</svg>

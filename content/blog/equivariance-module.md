@@ -12,7 +12,7 @@ Geometric deep learning is a field that has picked up considerable momentum rece
 Geometry can mean many things to different people: it might conjure images of manifolds in some minds, topological and distance properties, or particular arrangements of graphs in others. The “geometric” part in geometric deep learning, however, deals with the most abstract part of geometry: symmetries. Symmetries are composable functions under which an object can be transformed and remain unchanged, i.e., the objects are *invariant* to such transformations. The nature of the object and how to reason over its properties are tied to the symmetries that apply to it. They establish the rules by which we define geometric spaces. For example, objects in the Euclidean space are invariant under rotation and translation symmetries (a 3D object is the same object no matter how you turn it and move it around), while arbitrary topologies are defined by continuous scaling and deformation symmetries (where a teacup and a doughnut are considered the same thing). As a consequence, specifying what symmetries apply to an object allows automated algorithms to reason over complex and rich structures while respecting their nature, enabling machine learning methods over modalities like grids (e.g. images), graphs (molecules, social networks), and manifolds (e.g. meshes).
 
 ![](/img/equivariance/geometric_domains.png)
-*Geometric deep learning tries to inject symmetries into machine learning models to make it more natural to reason over complex objects like graphs and meshes. Taken from the "Geometric Deep Learning Grids, Groups, Graphs, Geodesics, and Gauges" by Bronstein et al.*
+*Geometric deep learning tries to inject symmetries into machine learning models to make it more natural to reason over complex objects like graphs and meshes. Taken from "Geometric Deep Learning Grids, Groups, Graphs, Geodesics, and Gauges" by Bronstein et al.*
 
 Formally, symmetries are defined as mathematical groups: a set of objects and an operation (in this case, composition) with a neutral element and inverses for each object. Like vector spaces and the like, groups have a “basis” set of generators from which you can generate the entire group. These groups **act** on vector spaces by applying the functions represented by each object. The group of rotations therefore acts on 3D objects by, well, rotating them. If the action of the group is linear, we can choose matrices as actions themselves. These matrices are called **representations** -- for the rotation case, we can simply choose the rotation matrices as our representation. Note that these groups need not be finite and can have even more structure to them like Lie algebras.
 
@@ -21,7 +21,7 @@ How do we inject such symmetry constraints into machine learning models? Let’s
 ![](/img/equivariance/equivariance_is_examination.png)
 *Equivariance is like examining an object: it's features transform in accordance to an objects symmetry actions. Invariance is more like assessing an object, aggregating all of its features in some way to give a set of veredicts*
 
-Equivariance is actually the property that motivated geometric deep learning in the first place. Indeed, part of the success of convolutional neural networks was attributed to their property of being translationally equivariant. Even in parts of networks where equivariance was not baked in, it has been observed that [it arises naturally](https://distill.pub/2020/circuits/equivariance/) in some contexts. Pulling the convolutional thread, Cohen and Welling generalized CNNs to be [equivariant to any group](https://arxiv.org/pdf/1602.07576.pdf) a strategy that Cohen later expanded into a [full theory](https://arxiv.org/pdf/1811.02017.pdf), setting convolution as the centerpiece of equivariance network design. This work has been expanded to transformers in some groups like [roto-translations](https://proceedings.neurips.cc//paper/2020/hash/15231a7ce4ba789d13b722cc5c955834-Abstract.html) and [others](https://arxiv.org/pdf/1901.11399.pdf), as well as very general design algorithms for [equivariant MLPs](https://arxiv.org/pdf/2104.09459.pdf). The theory also seems to apply retrospectively to popular architectures -- e.g. a slightly modified versions of LSTMs are time-warping equivariant -- which has led to the authors laying out a manifesto of sorts for categorizing network architectures and the spaces/objects they operate: a [geometric deep learning blueprint](https://arxiv.org/pdf/2104.13478.pdf) for understanding and designing equivariant architectures.
+Equivariance is actually the property that motivated geometric deep learning in the first place. Indeed, part of the success of convolutional neural networks was attributed to their property of being translationally equivariant. Even in parts of networks where equivariance was not baked in, it has been observed that [it arises naturally](https://distill.pub/2020/circuits/equivariance/) in some contexts. Pulling the convolutional thread, Cohen and Welling generalized CNNs to be [equivariant to any group](https://arxiv.org/pdf/1602.07576.pdf), a strategy that Cohen later expanded into a [full theory](https://arxiv.org/pdf/1811.02017.pdf), setting convolution as the centerpiece of equivariance network design. This work has been expanded to transformers in some groups like [roto-translations](https://proceedings.neurips.cc//paper/2020/hash/15231a7ce4ba789d13b722cc5c955834-Abstract.html) and [others](https://arxiv.org/pdf/1901.11399.pdf), as well as very general design algorithms for [equivariant MLPs](https://arxiv.org/pdf/2104.09459.pdf). The theory also seems to apply retrospectively to popular architectures -- e.g. a slightly modified versions of LSTMs are time-warping equivariant -- which has led to the authors laying out a manifesto of sorts for categorizing network architectures and the spaces/objects they operate: a [geometric deep learning blueprint](https://arxiv.org/pdf/2104.13478.pdf) for understanding and designing equivariant architectures.
 
 But what does equivariance actually buy you? Designing these architectures is not trivial and implementations can get really slow. The main advantage that has been observed is sample efficiency: equivariant networks tend to work in smaller data regimes. Particularly, data augmentation schemes are redundant in equivariant networks as there is no need to teach the network that translated/rotated versions of an object are the same since it’s already baked into the architecture. In a way, the amount of true symmetry equivariances and invariances a model has is a dial of how much data it needs: in one extreme a completely naive network will need a lot of data to learn about all the symmetries and in the other extreme it might resemble a natural law where no data is required as the symmetries are almost all known.
 
@@ -29,6 +29,8 @@ But what does equivariance actually buy you? Designing these architectures is no
 *Symmetry constraints and data augmentation are two sides of a coin: with more symmetry constraints, less data is required approximating a natural law*
 
 ## Hacking our way towards equivariance
+
+*Note: all of the following code is available in a [colab notebook](https://colab.research.google.com/drive/1wZAyqsuu8-f62pK3yv8trvymQrtPK1rE?usp=sharing)*
 
 Doing is learning! What if we try to implement a deep learning module that is equivariant to some symmetry from scratch? Let’s consider a toy problem in computational biology: predicting the binding energy of some fixed transcription factor to various DNA sequences. In this problem, you have a DNA sequence (made up of TGCAs) and you want a regressor to predict a binding energy to a fixed transcription factor. For example, the TATA-box binding protein is a transcription factor that binds sequences that have a TATA-box sequence motif and the binding energy varies depending on how similar to the motif a part of the DNA sequence is. DNA sequences can come from many organisms and evolve in different ways, so you expect the sequences you will examine to be mutated versions of each other, so e.g. ATTGCAAA might have the same biological meaning as a slightly mutated version of it, say ATTTCAAC. This way, you can sort of visualize that the way a functional sequence motif “moves” across evolutionary time is through mutations -- there is a sort of “mutation” symmetry that the sequences follow.
 
@@ -145,7 +147,7 @@ There are several ways we can go about and design an equivariant module. Here, I
 argmin\_{f\_{equiv}} ||f(s) - f\_{equiv}(s)||^2_2
 \end{equation\*}
 \begin{equation\*}
-f\_{equiv}(g(s)) = g(f\_{equiv}(s)) \forall v \forall g
+f\_{equiv}(g(s)) = g(f\_{equiv}(s)) \quad \forall v \forall g
 \end{equation\*}
 
 Here I’m using an $l2$ norm as a loss function to minimize to illustrate. To simplify things even further, let’s say $f$ is linear so that $f(s)=Ms$. In which case the optimization problem becomes:
@@ -153,7 +155,7 @@ Here I’m using an $l2$ norm as a loss function to minimize to illustrate. To s
 argmin\_{M\_{equiv}} ||Ms - M\_{equiv}s||^2_2
 \end{equation\*}
 \begin{equation\*}
-M\_{equiv}g(s) = g(M\_{equiv}s) \forall s \forall g
+M\_{equiv}g(s) = g(M\_{equiv}s) \quad \forall s \forall g
 \end{equation\*}
 
 Let’s reaaaaaaally simplify this and say we want this to hold for some finite set $s \in S$ by either sampling the vector space or looking at its basis, and focusing just on the generators of the group $g \in G$. In that case, we can plug in the equivariance constraints as Lagrangian multipliers:
@@ -164,10 +166,10 @@ argmin\_{M\_{equiv}} \sum\_{s \in S, g \in G} ||Mv - M\_{equiv}s||^2_2 + \lambda
 
 Going back to our code, we can straight up use `scipy.optimize.least_squares` for this, which needs for pieces of the loss function to be returned in a vector:
 ```python
-def equivariant_loss(mat, M, reg, symmetry, Space, samples):
+def equivariant_loss(mat, M, λ, symmetry, Space, samples):
      M_equiv = mat.reshape([Space.DIM, Space.DIM])
      equiv_constraints = [
-                          reg * (symmetry.act(Sequence(np.dot(M_equiv, s.vec)), gen).vec - np.dot(M_equiv, symmetry.act(s, gen).vec))
+                          λ * (symmetry.act(Sequence(np.dot(M_equiv, s.vec)), gen).vec - np.dot(M_equiv, symmetry.act(s, gen).vec))
                           for s in samples
                           for gen in symmetry.generators
                           ]
@@ -197,8 +199,17 @@ We can see it actually works ok with a random example:
 ## Linear representations and equivariant basis
 
 The problem with this approach is that it takes a long time. Each time we want to use the matrix of our module, we need to call `get_equivariant_version` to get the equivariant version which solves a possibly onerous optimization problem that can take up to 3 mins for each darn call. This is impractical even for our toy setting. To make this work, we have to make a couple of adjustments:
-1. Instead of using the arbitrary representations of $g(s)$, we’ll compute a linear approximation of the symmetry elements so that their actions over the sequences are $g(s) \sim \rho\_g s$ for some matrix $\rho$. That is, our representation $\rho$ is the *linear representation* that we’ve mentioned above.
-2. Using the linear representations, we can see that any arbitrary matrix $M\_{equiv}$ that satisfies $M\_{equiv}g(s) = g(M\_{equiv}s) \sim M\_{equiv}\rho\_g s = \rho\_g M\_{equiv}s$ should live in the null space defined by the linear equations $(M\_{equiv}\rho_g s M\_{equiv}^{-1} - I) \rho = 0 \forall s \forall g$. We can get the basis of this space and its projection matrix $P$, and simply use it to project any arbitrary matrix $M$ into the space and get its equivariant version by just basic matrix multiplication, reducing the cost significantly. We call such basis the **equivariant basis**
+
+1. Instead of using the arbitrary representations of $g(s)$, we’ll compute a linear approximation of the symmetry elements so that their actions over the sequences are $g(s) \sim \rho\_g s$ for some matrix $\rho\_g$. That is, our representation $\rho\_g$ is the *linear representation* that we’ve mentioned above.
+2. Using the linear representations, we can see that any arbitrary matrix $M\_{equiv}$ that satisfies
+\begin{equation\*}
+M\_{equiv}g(s) = g(M\_{equiv}s) \sim M\_{equiv}\rho\_g s = \rho\_g M\_{equiv}s
+\end{equation\*}
+should live in the null space defined by the linear equations
+\begin{equation\*}
+(M\_{equiv}\rho_g s M\_{equiv}^{-1} - I) \rho\_g = 0 \quad \forall s \forall g
+\end{equation\*}
+We can get the basis of this space and its projection matrix $P$, and simply use it to project any arbitrary matrix $M$ into the space and get its equivariant version by just basic matrix multiplication, reducing the cost significantly. We call such basis the **equivariant basis**
 
 Let’s code this up! Since these functions are attached to the symmetry in question, let’s make them methods of the class. First up, let’s “compile” linear representations for all of our generator functions. This is a straightforward least squares optimization problem:
 
@@ -227,14 +238,14 @@ class Sy
 
 Notice that compiling the representations “attaches” the vector space to the symmetry object. For our `mutate` symmetry object, we can compile its linear representations in a one-time, maybe expensive call:
 
-```
+```python
 mutate.compile_linear_representations(Sequence)
 ```
 
-The resulting representations look like this:
+The resulting representations look like something this:
 
 <img src="/img/equivariance/linear_equivariance.png" style="display:block; margin-left: auto; margin-right: auto;" width=100%>
-*Linear representations found by our equivariance basis projection method*
+*Examples of linear representations found by our equivariance basis projection method*
 
 Let’s briefly take a look at the compiled representations with more detail. Remember when I said that we implemented each mutation function in a weird way by cyclically shifting the vector with that `np.roll` call? Well, here’s the connection: you can clearly see that the representation for the mutation in the first nucleotide is basically the identity except for that square in the middle that contains a matrix like this:
 \begin{pmatrix}
@@ -246,7 +257,19 @@ Let’s briefly take a look at the compiled representations with more detail. Re
 
 Which exactly corresponds to the cyclical shift operator! This was just for demonstration purposes -- our mutation function need not be a cyclical shift, but could have been a mutation from any nucleotide to any other nucleotide, and its linear representation would just correspond to some permutation matrix. While we could have written the linear representations ourselves, I think it’s interesting and convenient that we can just think of our symmetry elements and their actions in terms of functions and let the computer find the appropriate representations.
 
-Now that we have the linear representations for each generator of our symmetry computed, we can use them to compute the equivariant basis. Recall that given an arbitrary matrix $M$  we want a $M\_{equiv}$ that satisfies $M\_{equiv}g(s) = g(M\_{equiv}s) \sim M\_{equiv}\rho_g s = \rho_g M\_{equiv}s$ and therefore that lives in the null space of the linear equations $(M\_{equiv}\rho_g s M\_{equiv}^{-1} - I) \rho = 0 \forall s \forall g \in G$. This way of writing the set of linear equations is a bit cumbersome especially for a computer to solve. Luckily there’s this useful identity that says that if you have a system $AX = B$ with an unknown matrix $X$ then you can turn it into a standard linear system using kronecker products $((B^{-1})^T \otimes A - I)vec(X) = 0$ where $vec$ is the function that flattens a matrix into a vector. We can then write out the linear system to compute the equivariant basis as a method in our `Sy` class:
+Now that we have the linear representations for each generator of our symmetry computed, we can use them to compute the equivariant basis. Recall that given an arbitrary matrix $M$  we want a $M\_{equiv}$ that satisfies
+
+\begin{equation\*}
+M\_{equiv}g(s) = g(M\_{equiv}s) \sim M\_{equiv}\rho_g s = \rho_g M\_{equiv}s$
+\end{equation\*}
+
+and therefore that lives in the null space of the linear equations
+
+\begin{equation\*}
+(M\_{equiv}\rho_g s M\_{equiv}^{-1} - I) \rho = 0 \quad \forall s \forall g \in G
+\end{equation\*}
+
+This way of writing the set of linear equations is a bit cumbersome especially for a computer to solve. Luckily there’s this useful identity that says that if you have a system $AX = B$ with an unknown matrix $X$ then you can turn it into a standard linear system using Kronecker products $((B^{-1})^T \otimes A - I)vec(X) = 0$ where $vec$ is the function that flattens a matrix into a vector. We can then write out the linear system to compute the equivariant basis as a method in our `Sy` class:
 
 ```python
 from scipy.linalg import null_space
@@ -311,7 +334,11 @@ class EquivariantLinear(nn.Module):
    nn.init.eye_(self.W)
    self.bl = nn.Bilinear(dim, dim, dim)
   def forward(self, x):
-   W_equiv = torch.from_numpy(self.symmetry.equivariant_version(self.W.detach().numpy())).float()
+   W_equiv = torch.from_numpy(
+                self.symmetry.equivariant_version(
+                  self.W.detach().numpy()
+                )
+             ).float()
    xe = torch.matmul(x, W_equiv)
    return self.bl(xe, x)
 ```
@@ -381,9 +408,9 @@ We can generate training and test sets with different numbers of perturbations a
 *Test set loss of our simple network with equivariant versions (first column) and vanilla linear layers (second column) under several train/test mutation schemes (within grid) and training set sizes (rows). Darker (lower) is better.*
 
 
-The equivariant network does do a little bit better than the vanilla linear MLP but I was surprised that there wasn’t any pattern depending on the number of train/test perturbations. The sample size effect also doesn’t seem to be that great. Overall, equivariance does seem to be doing something to make the predictions better, but not clear to me what that is.
+The equivariant network does do a little bit better than the vanilla linear MLP but I was surprised that there wasn’t any pattern depending on the number of train/test perturbations. The sample size effect also doesn’t seem to be that great. Overall, equivariance does seem to be doing something to make the predictions better, though not dramatically.
 
 ## Take home points
 
 It’s fun and challenging to think about the symmetries that govern a particular problem, as it makes you think hard about the structure of the data and task at hand. It also expands the types of objects you can do machine learning on: in this toy example, our sequence of nucleotides were not just sequences of strings, but had an underlying mutation model -- in the end they felt more like true biological sequences. It’s also interesting to note that with the proper API and abstractions, we don’t have to worry about group elements and representations, but rather think of them as functions (the group actions themselves) which I think is a more natural view, at least programmatically. The framework itself can be pretty powerful if only by putting us in the right state of mind to understand the data and task better. That said, I noticed there was some brittleness in symmetries. Sometimes our symmetry constraints are not clear cut but rather more fuzzy. For example, the mutation model we assume here is very far from reality. We would rather have a mutation model with transition probabilities between nucleotides. Such fuzzy symmetries are arguably more prevalent than rigid symmetries like rototranslational symmetries that govern some physical systems. We can perhaps deal with this by introducing some sort of probabilistic equivariance constraints, something that is hinted at in some recent work including the geometric deep learning book.
-Another disadvantage that I noticed is that equivariance (especially linear equivariance) comes at a cost of expressivity. Here, like in the equivariant MLP paper, we had to add a bilinear layer to boost the expressive power of our equivariant networks. Further, we used SiLU gates which are gated non-linearities that guarantee preservation of equivariant constraints. When you swap the SiLUs for ReLUs the vanilla MLP is basically as good as the equivariant version. All in all, I think the field is very promising and accelerating fast, but it’s still in an infancy of sorts, with lots of interesting and exciting stuff to figure out!
+Another disadvantage that I noticed is that equivariance (especially linear equivariance) comes at a cost of expressivity. Here, like in the equivariant MLP paper, we had to add a bilinear layer to boost the expressive power of our equivariant networks. Further, we used SiLU gates which are gated non-linearities that guarantee preservation of equivariant constraints. When you swap the SiLUs for ReLUs the vanilla MLP is basically as good as the equivariant version. All in all, I think the field is very promising and accelerating fast, but it’s still in an infancy of sorts, with lots of interesting and exciting stuff to figure out! I hope this post served to illustrate the concepts with a somewhat practical example, and don't forget that all of the code is available in the [colab notebook](https://colab.research.google.com/drive/1wZAyqsuu8-f62pK3yv8trvymQrtPK1rE?usp=sharing)

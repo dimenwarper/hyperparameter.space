@@ -194,6 +194,7 @@ R_equiv = get_equivariant_version(R, Sequence, mutate)
 We can see it actually works ok with a random example:
 
 <img src="/img/equivariance/random_equivariant.png" style="display:block; margin-left: auto; margin-right: auto;" width=100%>
+
 *Using the above method to get the equivariant version of a random matrix (first row). Second row: symmetry group actions showing that the resulting matrix does conform with equivariance constraints well.*
 
 ## Linear representations and equivariant basis
@@ -245,6 +246,7 @@ mutate.compile_linear_representations(Sequence)
 The resulting representations look like something this:
 
 <img src="/img/equivariance/linear_equivariance.png" style="display:block; margin-left: auto; margin-right: auto;" width=100%>
+
 *Examples of linear representations found by our equivariance basis projection method*
 
 Let’s briefly take a look at the compiled representations with more detail. Remember when I said that we implemented each mutation function in a weird way by cyclically shifting the vector with that `np.roll` call? Well, here’s the connection: you can clearly see that the representation for the mutation in the first nucleotide is basically the identity except for that square in the middle that contains a matrix like this:
@@ -312,6 +314,7 @@ R = np.random.rand(Sequence.DIM, Sequence.DIM) * 10
 R_equiv = mutate.equivariant_version(R)
 ```
 <img src="/img/equivariance/random_linear_equivariant.png" style="display:block; margin-left: auto; margin-right: auto;" width=100%>
+
 *A random matrix and its equivariant version as found by our equivariant basis projection. The equivariant version is a very simple identity-like matrix that does conform to equivariance constraints (second row)*
 
 The equivariant version of the random matrix is indeed equivariant, but notice that it’s basically just the identity scaled by some scalar. This limits expressivity by a lot and it’s something that we will have to correct when implementing our equivariant module below.
@@ -405,6 +408,7 @@ class TATABoxDataset(Dataset):
 We can generate training and test sets with different numbers of perturbations and of different sizes and see how well a `SimpleNet` does with and without equivariance constraints. After scanning these 3 different testing parameters, this is what we get:
 
 <img src="/img/equivariance/results_grid.png" style="display:block; margin-left: auto; margin-right: auto;" width=100%>
+
 *Test set loss of our simple network with equivariant versions (first column) and vanilla linear layers (second column) under several train/test mutation schemes (within grid) and training set sizes (rows). Darker (lower) is better.*
 
 

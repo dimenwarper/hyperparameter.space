@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Hyperparameter Space</title>
@@ -6,10 +6,25 @@
     <description>Recent content in Blog on Hyperparameter Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 18 Apr 2021 14:51:18 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 07 Sep 2021 20:50:58 -0700</lastBuildDate><atom:link href="http://hyperparameter.space/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When will science become version controlled?</title>
+      <link>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</link>
+      <pubDate>Tue, 07 Sep 2021 20:50:58 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</guid>
+      <description>It’s no secret that there’s something broken about how science is published and disseminated. Behind each paper there’s a hefty body of work, revisions, unpublished data, and back-and-forth argumentation that doesn’t make it to the final version. Unless a preprint is published or an openly-reviewed avenue is chosen (e.g. eLife, OpenReview, or the various journals that choose post-publication peer review), the whole discussion between authors and reviewers remains behind closed doors.</description>
+    </item>
     
-	<atom:link href="http://hyperparameter.space/blog/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Implementing a geometric deep learning module from scratch</title>
+      <link>http://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</link>
+      <pubDate>Tue, 27 Jul 2021 14:51:18 -0700</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</guid>
+      <description>A Hacker&amp;rsquo;s Guide to Equivariance
+Geometric deep learning is a field that has picked up considerable momentum recently. And with good reason, as it deals with ways on how to reason over objects (like graphs, meshes, and protein structures) that are tied to impactful tasks downstream (like predicting molecular properties and automating animation). Additionally, it’s setting up a framework that tries to retroactively explain many of the successes of deep learning with the hope of extrapolating lessons learned to new, more challenging domains.</description>
+    </item>
     
     <item>
       <title>This is (not) a machine</title>
@@ -36,7 +51,7 @@ Much progress has been made in laboratory and computational techniques to probe 
       <pubDate>Thu, 16 Jul 2020 11:48:26 -0700</pubDate>
       
       <guid>http://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</guid>
-      <description>The world is the enzymes&amp;rsquo; playground and we are but their vessels. We wage their wars, we nurture them, we help them evolve, grow, and replicate. Life really is all about them. Fortunately, we&amp;rsquo;ve also learned to harness them for our ends, using them to synthesize and edit DNA, digest harmful materials, and, crucially, produce a vast array of molecules with a plethora of applications ranging from agriculture to pharmaceuticals.</description>
+      <description>The world is the enzymes&#39; playground and we are but their vessels. We wage their wars, we nurture them, we help them evolve, grow, and replicate. Life really is all about them. Fortunately, we&amp;rsquo;ve also learned to harness them for our ends, using them to synthesize and edit DNA, digest harmful materials, and, crucially, produce a vast array of molecules with a plethora of applications ranging from agriculture to pharmaceuticals. Compared to what organic synthesis techniques can accomplish with long sequences of basic chemical modifications, enzymes can achieve more complex molecular structures with less steps, at enviable ambient temperatures, many times more yield, and a higher chance of bioactivity.</description>
     </item>
     
     <item>
@@ -70,8 +85,7 @@ Metformin ($400M revenue)
 Cyclosporin (&amp;gt;$1B)
 Dimethyl fumarate (&amp;gt;$4B)
 In drug discovery, there will always be enough exceptions to the rules
-&amp;mdash; Ash Jogalekar (@curiouswavefn) June 24, 2019 
-Translating it to more &amp;lsquo;machine-learning-ish&amp;rsquo; language this means that the problem of predicting ultimately successful drug candidates is the pathological case where the cost of your predictions is really high and the rewards are higher but concentrated in a space defined by unmeasured covariates (a molecule might be a terrible drug for one indication but a really good drug for another and the space of possible/probable indications is vast and for the most part unknown).</description>
+&amp;mdash; Ash Jogalekar (@curiouswavefn) June 24, 2019  Translating it to more &amp;lsquo;machine-learning-ish&amp;rsquo; language this means that the problem of predicting ultimately successful drug candidates is the pathological case where the cost of your predictions is really high and the rewards are higher but concentrated in a space defined by unmeasured covariates (a molecule might be a terrible drug for one indication but a really good drug for another and the space of possible/probable indications is vast and for the most part unknown).</description>
     </item>
     
     <item>
@@ -107,7 +121,7 @@ Translating it to more &amp;lsquo;machine-learning-ish&amp;rsquo; language this 
       <pubDate>Fri, 16 Jun 2017 21:17:31 -0700</pubDate>
       
       <guid>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</guid>
-      <description>I know it&amp;rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&amp;rsquo;ve been thinking recently. It all started with a post in the Simply Stats blog by Jeff Leek on the caveats of using deep learning in the small sample size regime.</description>
+      <description>I know it&amp;rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&amp;rsquo;ve been thinking recently. It all started with a post in the Simply Stats blog by Jeff Leek on the caveats of using deep learning in the small sample size regime. In sum, he argues that when the sample size is small (which happens a lot in the bio domain), linear models with few parameters perform better than deep nets even with a modicum of layers and hidden units.</description>
     </item>
     
   </channel>

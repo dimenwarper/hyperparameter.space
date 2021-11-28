@@ -13,9 +13,10 @@
 <meta property="og:title" content="Causal models make a comeback" />
 <meta property="og:description" content="I really can’t help but smile when hearing folks talking about causal models recently. It looks like causal models are making a comeback! This is a pleasant surprise to me, since I’ve always been a fan of causal inference and I wasn’t sure Judea Pearl’s “Book of Why” was going to catch up or not. But now we even have Pearl on Twitter and there’s more light being shed on work that leverages causal models for various problems or that scales them to very high dimensional settings." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://hyperparameter.space/blog/causal-models-make-a-comeback/" />
-<meta property="article:published_time" content="2018-12-23T14:32:16-08:00"/>
-<meta property="article:modified_time" content="2018-12-23T14:32:16-08:00"/>
+<meta property="og:url" content="http://hyperparameter.space/blog/causal-models-make-a-comeback/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2018-12-23T14:32:16-08:00" />
+<meta property="article:modified_time" content="2018-12-23T14:32:16-08:00" />
+
 
 
 <title>
@@ -70,9 +71,9 @@
 
 
     
-    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2021-04-22%2018%3a32%3a56.329123%20-0700%20PDT%20m%3d%2b0.235980787">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2021-04-22%2018%3a32%3a56.329123%20-0700%20PDT%20m%3d%2b0.235980787">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2021-04-22%2018%3a32%3a56.329123%20-0700%20PDT%20m%3d%2b0.235980787">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2021-09-08%2020%3a33%3a24.256558329%20-0700%20PDT%20m%3d%2b0.189006503">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2021-09-08%2020%3a33%3a24.256558329%20-0700%20PDT%20m%3d%2b0.189006503">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2021-09-08%2020%3a33%3a24.256558329%20-0700%20PDT%20m%3d%2b0.189006503">
     
 
 
@@ -102,7 +103,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
 </head>
 
 
@@ -116,6 +116,10 @@ if (!doNotTrack) {
                 
                 
                 
+                
+                    
+                
+                    
                 
                     
                 
@@ -241,91 +245,50 @@ if (!doNotTrack) {
                 </div>
             </div>
             <div class="markdown">
-                
-
-<p>I really can’t help but smile when hearing folks talking about causal models recently. It looks like causal models are making a comeback! This is a pleasant surprise to me, since I’ve always been a fan of causal inference and I wasn’t sure Judea Pearl’s “Book of Why” was going to catch up or not. But now we even have Pearl on Twitter and there’s more light being shed on work that leverages causal models for various problems or that scales them to very high dimensional settings. We even get new python packages (e.g. Microsoft’s <a href="https://github.com/Microsoft/dowhy">DoWhy</a>)! Rightly so, there’s talk on testing machine learning models on data distributions that they were not trained on, to strain-test them properly, and this is the setting where causal models excel. But the main lure of causal models is that they make explicit claims of the nature of the world &ndash; they state not only the process by which the observed is generated, but also what happens under intervention of each of the variables, surfacing the alternative, counterfactual, ‘what if’ routes that the state of the world could be in. In this sense, it is a much more complete picture of reality than, say, conditional probability distributions. Further, it allows for generating potentially testable predictions to falsify or verify our view of the world.</p>
-
+                <p>I really can’t help but smile when hearing folks talking about causal models recently. It looks like causal models are making a comeback! This is a pleasant surprise to me, since I’ve always been a fan of causal inference and I wasn’t sure Judea Pearl’s “Book of Why” was going to catch up or not. But now we even have Pearl on Twitter and there’s more light being shed on work that leverages causal models for various problems or that scales them to very high dimensional settings. We even get new python packages (e.g. Microsoft’s <a href="https://github.com/Microsoft/dowhy">DoWhy</a>)! Rightly so, there’s talk on testing machine learning models on data distributions that they were not trained on, to strain-test them properly, and this is the setting where causal models excel. But the main lure of causal models is that they make explicit claims of the nature of the world &ndash; they state not only the process by which the observed is generated, but also what happens under intervention of each of the variables, surfacing the alternative, counterfactual, ‘what if’ routes that the state of the world could be in. In this sense, it is a much more complete picture of reality than, say, conditional probability distributions. Further, it allows for generating potentially testable predictions to falsify or verify our view of the world.</p>
 <p>What is a causal model? In simple terms, it’s the statement that some/all conditional relationships between variables in a statistical model are causal. This mainly implies that if you state that $X \rightarrow Y$, then you’re saying that performing interventions on $X$ will have an effect on $Y$ necessarily (which is different than stating that $Y$ conditioned on $X$ has a certain form/shape, this would be a ‘correlation-based’ statement that applies only on samples on that distribution, whereas $X \rightarrow Y$ is a causal statement that applies to samples outside of the observed distribution). Ferenc Huzar as always has <a href="https://www.inference.vc/untitled/">a very good post</a> on the definitions of causal models and their difference with conditional distributions.</p>
-
 <p>The satisfying thing about causal models is their rigor: they make explicit your core assumptions about your data and modeling. If you’re like me, you might have first been exposed to probability/stats through some applied area, like computational biology or machine learning. At first, the problem of inference looks conceptually straightforward: optimize a loss function $L$ that summarizes your assumptions about your data and the task you’re trying to solve.</p>
-
 <p>$$\arg\min_{\theta} L(\theta)$$</p>
-
 <p>You might have then been exposed to Bayesian statistics. Then things start to get interesting. Turns out that you may be hiding some constants in your loss function, or making assumptions about your data if you regularized in any way.</p>
-
 <p>$$\arg\min_{\theta} L(\theta) + R(\theta) + Z$$</p>
-
 <p>These are your priors and what you’re trying to optimize is actually some form (e.g. the log) of the posterior distribution. You are also hiding a constant in your data, the partition function $Z$ that actually makes the posterior an actual distribution. Superficially, nothing has changed, your problem is still an optimization problem, your loss function is still the same. But your conceptual understanding of it is transformed and has important implications. This posterior distribution might actually represent your belief in your inferred parameters. If so, shouldn’t you be getting the actual shape of your posterior distribution instead of optimizing it? This is the core of Bayesian statistics and if you want to follow that path it has implications on how you do your inference (as in you have to figure out how to infer an entire distribution which is in general a lot more difficult than point estimation).</p>
-
 <p>Causal models are a similar conceptual jump. Even if you put your inference task under a rigorous Bayesian model, you are limited only to the data distribution you infer from, and any relationships between your variables at the end of the day will be statistical, all bets are off with any extrapolation you make from your model. In truth, one’s goal is rarely just to find statistical correlations, it almost always is to gain an understanding of how something works (or to build a machine that has an understanding of how something works). More often than not, you want to find out relationships that generalize outside of your distribution. What you really want to find out is whether variations in the gene that you have studied for years really <a href="https://twitter.com/SbotGwa/status/1066396868572254208">do cause late cell phone adoption</a>. What you really want to find out is whether your drug treatment worked, or whether your machine learning model is really unbiased. These are not statistical models, these are causal models: dependencies and assumptions that describe the chain of events we are interested in. We keep saying that we understand that correlation is not causation, but almost always we do hope it does.</p>
-
 <p>Just like going from just a loss function to a Bayesian posterior, taking into consideration causal models might change how we perform our inference. If we now know that we need to find out not $P(Y|X)$ but its interventional cousin $P(Y|do(X))$, then we must put our causal assumptions on the table and consider whether this is even feasible from the observed data. If not, then we might end up stating something about $P(Y|X)$, but with warnings to whoever uses this model, caveat emptor, or that we that we need to run a randomized experiment. As with Bayesian statistics, the power is more conceptual. It is a more honest way to convey the results of the analyses.</p>
-
 <h2 id="intervention-and-counterfactuals">Intervention and counterfactuals</h2>
-
 <p>The causal dependencies between variables that compose causal models can be used to predict two main quantities of interest. The first one is the probability of intervention $P(Y|do(X))$, which is the probability of observing $Y$ when you intervene in the real world and set the value of $X$, and represents the total effect of that intervention. The second one is a generalization of this intervention mechanism, in which we are allowed to imagine a counterfactual world where not only $X$ changes value, but maybe some other variables as well, including mediating variables like $M$ in $X \rightarrow M \rightarrow Y$ are also set to whatever we want. Interventions are in a way the most simple of (non-trivial) counterfactuals.</p>
-
 <p>When we are interested in interventions, that is in the $P(Y|do(X))$ quantity, we may want to know things like whether, say, a treatment actually had any effect on a given disease. This question can be answered with a randomized experiment, by separating your population into random groups, intervening on them in different ways, and observing the results. This is many times infeasible due to ethical or cost concerns. However, if you assume that your causal model has certain structure, then you might be able to calculate $P(Y|do(X))$ given just observations of $P(Y| X)$. There are many ways to do this, but the following three are the ones I&rsquo;ve seen the most:</p>
-
-<p><img src="http://hyperparameter.space/img/causal_models/causal_diagrams.png" alt="" />
+<p><img src="http://hyperparameter.space/img/causal_models/causal_diagrams.png" alt="">
 <em>Left: Illustration of instrumental variables and the backdoor criterion. U is an unstrumental variable of $X \rightarrow Y$, while $Z$ blocks all backdoor paths from $X$ to $Y$, making it a confounder that can be leveraged to estimate the intervention effects of $X$ on $Y$ using observational data. Middle: the classic frontdoor criterion where $Z$ is the &ldquo;front door&rdquo; from $X$ to $Y$, allowing for an adjustment to estimate the effects of $X$ on $Y$ even if a confounder, $U$, is unobserved. Right: An example where no criterion can be used to calculate the effects of $X$ on $Y$ as there are backdoor paths blocked by an unobserved variable $V$, there are no instrumental variables, and no variables that act as front doors.</em></p>
-
 <h3 id="instrumental-variables">Instrumental variables</h3>
-
 <p>If you are in luck and you posit that the relationship between $Y$ and $X$ is linear, and you have another variable $Z$ that you know affects $Y$ <em>only</em> through $X$ also in a linear fashion, then $Z$ is called an instrumental variable and the causal effect $X \rightarrow Y$ can be calculated using a two-stage linear regression, where you first solve $Z = \alpha X + \epsilon_1$ and then solve $Y = \beta X + \epsilon_2$ by replacing $X$ with the result of the first regression. When the relationships above are not linear, $Z$ is also an instrumental variable but in general it’s not possible to use it to estimate the final causal effect. This limits the use (and conclusions obtained via) instrumental variables, since, remember, we are stating that the actual, true relationships <em>are</em> linear (bets are off for statements such as ‘linear approximations’).</p>
-
 <h3 id="the-backdoor-criterion">The backdoor criterion</h3>
-
 <p>This is one of Pearl’s do-calculus rules, and it’s a pretty neat result. Essentially, it states that when accounting for any variables that confound $X$ and $Y$, observing is the same as interventions. The “backdoor” name comes from the condition that all such confounders $Z$ must block all “backdoor” paths that begin in arrows pointing at $X$ and end at $Y$. In this case, we then have that $$P(Y|do(X) = x) = \sum_{z} P(Y | X = x, Z = z) P(Z = z)$$.</p>
-
 <h3 id="the-frontdoor-criterion">The frontdoor criterion</h3>
-
 <p>The counterpart of the backdoor criterion, where a variable $Z$ mediates the interaction between $X$ an $Y$ by blocking all directed paths (e.g. $X
 \rightarrow Z \rightarrow Y$). Additionally, $X$ must block all backdoor paths from $Z$ to $Y$ and there must be no backdoor paths from $X$ to $Z$. Then, we have that:</p>
-
 <p>$$P(Y|do(X) = x) = \sum_z P(Z=z|X=x) \sum_w P(Y|X=w,Z=z)P(X=w)$$</p>
-
 <p>In this case, the frontdoor name comes from the fact that $Z$ is the front and really only variable that mediates the interactions between $X$ and $Y$.</p>
-
 <h3 id="counterfactuals">Counterfactuals</h3>
-
 <p>Quantities that do not only depend on $P(Y|do(X))$ but on any arbitrary combination of counterfactual situations where we can imagine any intervention that we want are in the general case not only not possible to identify with observational data, but may be out of reach of any experimental design. Thus, counterfactuals prove useful in cases where either (1) they can be estimated from observational data (by being reduced to expressions containing do-operators with a certain structure) or (2) they can be falsified via further experimentation.</p>
-
 <h2 id="learning-causal-models-from-scratch">Learning causal models from scratch</h2>
-
 <p>So far we have assumed that we already have a causal model in mind when analyzing the data. But what if we don’t? Can we estimate the best causal model from the data? Turns out, there is indeed a way to score a causal model given the data. The concept linking the two is d-separation (short for dependance separation). In a nutshell, d-separation states that $X$ and $Y$ are separated by $Z$ under specific graphical conditions if and only if $X$ and $Y$ are observed to be conditionally independent given $Z$ (I won&rsquo;t review the graphical conditions of d-separations here, but you can find it in Pearl&rsquo;s <a href="http://bayes.cs.ucla.edu/BOOK-2K/d-sep.html">Causality</a>). This establishes a way to score the model given the data: just pick a scoring function that evaluated the conditional structure of your variables assuming the causal dependencies. Importantly, however, various causal models can have the same d-separation relationships between variables and will therefore score the same given the data. These are called Markov equivalence classes and algorithms that try to learn causal structure typically involve a smart way of sampling these classes to speed up the search.</p>
-
 <h2 id="some-applications-of-causal-models">Some applications of causal models</h2>
-
 <h3 id="scenarios-with-rapid-continuous-feedback">Scenarios with rapid, continuous feedback</h3>
-
 <p>Testing causal models almost always involves positing and running experiments. In the best of cases, we will have a system where we can quickly perform experiments and gauge the outcome in a continuous fashion. For example, in model-based reinforcement learning, the agent is constantly evaluating its current model given the state of the world and its actions. We can cast the task of learning the value function as a causal inference task, in which the current state of the agent $S$ causes some difference in state and reward in the next step $\Delta$ that in turn causes a change in the expected reward $r$. Shakir Mohamed has a <a href="http://blog.shakirm.com/2018/10/machine-learning-trick-of-the-day-8-instrumental-thinking/">great post</a> detailing this scenario using intstrumental variables.</p>
-
 <p>With a slower, but still fast, ability to test models, assessing the impact of an intervention in web site and product traffic is also a big area of application and one in which causal models are used a lot. For example, assessing the impact of the introduction of a recommender system or a marketing campaign while accounting for possible confounders (like seasonality) is the specialty of causal models.</p>
-
 <h3 id="quantifying-model-bias">Quantifying model bias</h3>
-
 <p>This is a clever application I was aware of only recently. One of the main worries of deploying machine learning models for critical decision making is bias that leaks from the training data to the model. What if we wanted to streamline hiring processes using historical data? The resulting system may end up learning discriminatory practices. One way to test whether the recommendations are biased is putting the black box algorithm as a variable inside a causal model and testing whether certain variables, like gender and ethnicity, have a causal effect on the model’s predictions. <a href="https://arxiv.org/abs/1703.06856">This paper</a> discuss this approach and the interesting considerations one must make when using causal models as a testing ground for black box decision makers.</p>
-
 <h3 id="data-integration">Data integration</h3>
-
 <p>One of the favored approaches in computational biology to almost any problem in bio is data integration. There are just a lot of disparate biomedical datasets out there each which might contain pieces of the answer for a question you might have. For example, say you want to know whether a particular drug will be effective in treating some disease. In the most informative of worlds, you would have all sorts of drug measurements and disease marker responses available for a big human population. But this is unethical and generally infeasible. In this case, your causal diagram would look something like this, where the relationship you&rsquo;re interested in is drug to disease:</p>
-
-<p><img src="http://hyperparameter.space/img/causal_models/drug_disease.png" style="display:block; margin-left: auto; margin-right: auto;" width=50%></p>
-
+<img src="http://hyperparameter.space/img/causal_models/drug_disease.png" style="display:block; margin-left: auto; margin-right: auto;" width=50%>
 <p>However, you can still use a lot of data sources to give you hints here and there of whether the drug modulates the disease. You could, for example, interrogate whether perturbation of the known gene/protein targets of the drug affect a cell line model of your disease. You can also ask whether the drug rescues some disease marker/phenotype in a mouse model; or whether another disease marker in a cell line is affected by exposure to the drug. We can collapse our previous causal model into a simpler one, in which both drug and disease are variables that are confounded by a &lsquo;measurement type&rsquo;:</p>
-
-<p><img src="http://hyperparameter.space/img/causal_models/drug_disease_collapsed.png" style="display:block; margin-left: auto; margin-right: auto;" width=30%></p>
-
+<img src="http://hyperparameter.space/img/causal_models/drug_disease_collapsed.png" style="display:block; margin-left: auto; margin-right: auto;" width=30%>
 <p>We can then apply the backdoor criterion to quantify the causal influence of the drug on the disease. Interestingly, the backdoor criterion tells us that:</p>
-
 <p>$$P(disease|do(drug)) = \sum_{MT} P(disease|drug, MT)P(MT)$$</p>
-
 <p>Where $MT$ is the measurement type. Notice, that this is simply weighing our conditional of disease to drug and $MT$ by a prior that we can put on the measurement type. In a way, we can use this to control how much we believe in that type of measurement (e.g. you might believe your mouse model more than your cell line model). Assuming linear relationships and Gaussian likelihoods, this model is easy to code and compute &ndash; it&rsquo;s simply a pair of least squares regresion problems. But what if we had a more complex model where we think the relationships are non-linear? We can leverage a probabilistic programming framework like Edward2 <a href="https://arxiv.org/abs/1710.10742">for this purpose</a>, using neural networks as non-linear regressors:</p>
-
-<div class="highlight"><pre class="chroma"><code class="language-py3" data-lang="py3"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py3" data-lang="py3"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">tensorflow_probability</span> <span class="k">as</span> <span class="nn">tfp</span>
-<span class="kn">from</span> <span class="nn">tensorflow_probability</span> <span class="k">import</span> <span class="n">edward2</span> <span class="k">as</span> <span class="n">ed</span>
+<span class="kn">from</span> <span class="nn">tensorflow_probability</span> <span class="kn">import</span> <span class="n">edward2</span> <span class="k">as</span> <span class="n">ed</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span> <span class="c1"># -&gt; for notebooks you might want to reset the graph</span>
 
 <span class="c1"># This follows in the spirit of Tran and Blei&#39;s work on implicit causal models</span>
@@ -489,35 +452,20 @@ if (!doNotTrack) {
 <span class="c1"># ...</span>
 <span class="c1"># Use log_joint_to_optimize with your favorite approach e.g. sampling with MCMC</span>
 <span class="c1"># or a maximum a posteriori via built-in optimizer, etc. ...</span></code></pre></div>
-
 <p>There are lots of things we can do to fine tune our model (e.g. adding priors to our parameters) and to scale it to really big datasets, but these are all tasks of statistical modeling. Our causal model remains the same simple triangle above.</p>
-
 <h2 id="some-caveats-of-causal-models">Some caveats of causal models</h2>
-
 <p>The causal model framework is not without its critiques. I can think of three particular examples with interesting ramifications:</p>
-
 <h3 id="what-is-an-intervention-really">What is an intervention, really?</h3>
-
 <p>When we talk about interventions of a do-operator, what are actually talking about? I’ve seen Pearl <a href="http://causality.cs.ucla.edu/blog/index.php/category/intuition/">define it</a> as the minimal intervention required to change the variable. But what exactly is a minimal intervention? Shouldn’t we model the intervention itself, as it may have unexpected consequences in other parts of the model? This is something that folks in policy bring up a lot, since their interventions via policies can be very blunt instruments that change multiple variables. To be honest, even if you can think of very precise interventions (like changing a single nucleotide in a genome via a magical enzyme), it is likely that you’re not thinking about unexpected consequences (no enzyme, no matter how magical, has no off-target effects in some way or another). Minimal interventions are an assumption that we must contend with when using do-calculus.</p>
-
 <h3 id="the-siren-call-of-structure-learning">The siren call of structure learning</h3>
-
 <p>Learning the structure of a causal model from scratch is an appealing idea for exploring causal models in an unbiased manner. But structure learning is hard. As in super-exponentially hard. There’s no generalizable way to efficiently sample equivalence classes and even if you can there’s a good chance there are many models that will fit your data equally way. Even if you do have a high-scoring causal model, how do you interpret it? Usually causal models are the condensation of several insights from many experiments. Unpacking a causal model is almost an ill-defined task. I think this sort of tripped up many folks in comp bio a few years ago. I started my PhD at the time where Bayesian networks were all the rage in genomics and computational folk were using them to try to understand how gene networks were wired at the large scale. At this time, some foundational results in gene expression, networks, and regulation (like any of <a href="https://paulsson.med.harvard.edu/">Johan Paulsson’s</a> or <a href="http://www.weizmann.ac.il/mcb/UriAlon/">Uri Alon’s</a> works) had been consistently derived from laborious time-lapse fluorescence experiments with a few genes and there was hope that some similar insights could be gained from high-throughput genomic datasets, where thousands of genes were observed at the same time, albeit in few samples and almost always with no temporal information. The field of gene network inference was all into Markov equivalent classes, d-separation, colliders, structural equation modeling, etc. But interest in these models began to wane as it became impossible to reasonably sample and interpret causal models of thousands of variables. By the time big collaborations on large-scale gene expression data collection in human were completed (e.g. the GTEx project), these models were largely abandoned. Indeed, the GTEx paper makes use of dead simple <a href="https://genome.cshlp.org/content/early/2017/10/06/gr.216721.116.abstract">correlation matrices</a>. And why not? They actually work OK for describing a global view of the data with minimal assumptions.</p>
-
 <h3 id="when-testing-a-causal-model-is-not-up-to-you">When testing a causal model is not up to you</h3>
-
 <p>This is not a flaw of causal models per se, but of neglecting the actual goals of causal models. The experimental feedback for rigorously testing causal models is a consequence of the state of a field or at the very least the place you work in. Things like optimal experimental design or refinement of causal models via randomized experiments require, well, experiments. If not everyone is on the same page, the theorists and computational folks will do their thing in isolation while the experimentalists will test whatever they think is good to test, which might not coincide with what the computational wing wants. Sometimes there’s the happy case where the modelers and experimentalists are the same, but most of the time (especially in biology), this is not the case. Causal models (like all models, really) are meant to be challenged and falsified &ndash; just make sure you’re not modeling in the vacuum.</p>
-
 <h2 id="other-approaches-to-causal-modeling">Other approaches to causal modeling</h2>
-
 <p>I mainly talked about Pearl&rsquo;s approach to causal modeling. But there are other approaches, each one with a unique viewpoint. Sewall Wright, which is a strong influence of Pearl&rsquo;s (and in many ways his predecessor), invented path analysis in structural equation models, in which one represents a causal graph by a system of linear equations (each equation a node, each incoming edge a coefficient in the equation). Path analysis then uses traversal rules in the graph and the coefficients to compute the causal effects between any nodes in the graph. This can be seen as a specific case (where relationships are linear) of Pearl&rsquo;s treatment, but by focusing on linear models, there are lots of results and short-hand rules one can use to quickly estimate causal effects.</p>
-
 <p>Another interesting approach are techniques based on forecasting, like <a href="https://www.sciencedirect.com/science/article/pii/016518898090069X">Granger causality</a> and <a href="http://science.sciencemag.org/content/early/2012/09/19/science.1227079/tab-pdf">convergent cross mapping</a>. Here, the focus is mostly on temporal predictions and how effective is $X$ in forecasting (temporally) $Y$ and/or how much the inverse is true. The relationships measured by these approaches are not causal in the strict, counterfactual, sense of the word, but nonetheless do give additional insights not captured by correlation alone and are easy to implement.</p>
-
 <p>Philosophically, there are other ways of conceptualizing counterfactuals and causality with their own drawbacks and advantages, including how each theory deals with problems like transitivity of causal relationships and causal events that are preemptive of others. These are out of the scope of this post, but it&rsquo;s worth a read in <a href="https://plato.stanford.edu/entries/causation-counterfactual/">Stanford&rsquo;s Encyclopedia of Philosophy</a>.</p>
-
 <h2 id="conclusions">Conclusions</h2>
-
 <p>I’ve been having a happy reunion with causal models and have learned a lot about the advantages, subtleties, and criticism to the approach by lurking the various conversations Pearl has with other folks in Twitter. If anything, these discussions have started to bring forth the crucial problem of non-stationary distributions that many applications of machine learning face. Learning probability distributions in general can be pretty hard, but ultimately is a static, proxy of a problem. Learning full causal models is a dynamic process in which we constantly question and our model of the world, an approach that is closer of what we actually want to do with machine learning models in a lot of cases. I’m not sure if there will be causal renaissance like deep learning, or which approach (whether Pearl’s or others’) will be deemed the best in the end. But the refresher is most welcomed.</p>
 
                 <br>

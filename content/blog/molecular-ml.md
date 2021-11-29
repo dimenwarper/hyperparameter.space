@@ -74,21 +74,23 @@ As mentioned above, the whole point of this exercise was to get a sense of the f
 
 First up we’ll try to use molecular  fingerprints. Particularly, we’ll use the flavor everyone likes: the extended connectivity fingerprint (ECFP) which encodes the identity and connectivity pattern of each atom using [the Morgan algorithm](https://pubs.acs.org/doi/abs/10.1021/c160017a018). ECFPs are pretty effective across the board and they capture local and distant connectivity patterns in an iterative fashion. For a super friendly introduction, check out [this page](https://depth-first.com/articles/2019/01/11/extended-connectivity-fingerprints/). We’ll use a 1024 bit fingerprint, meaning a 1024 vector of zeros and ones for the molecular representation. We’ll then feed this into a simple, deep multi-layer perceptron (MLP). These days, it seems that MLPs are synonymous with MLPs with residual connections, so each layer of the MLP will actually be a residual block. I used SiLUs for the activating function, which gave a slightly better performance than ReLUs but not by much. The architecture is super straightforward:
 
-![](/img/molecular_ml/mlp_model.png)
+![](/img/molecular_ml/mlp_model.png#center)
 *Molecular fingerprint-based MLP architecture*
 
 ### GCN
 
 Then, I tried a graph convolutional neural network using the awesome [torch_geometric](https://pytorch-geometric.readthedocs.io/en/latest/) package. Graph convnets (GCNs), or more generally message passing networks, come in many many many flavors now and I was quite overwhelmed by the number of choices:
 
-![](/img/molecular_ml/torch_geom_nn.png)
+![](/img/molecular_ml/torch_geom_nn.png#center)
 *This is just like a third of the convolution layers available...also there's a similar list for pooling*
 
 I decided to take the vanilla GCNs -- the real OGs. In any case, all of these modules basically take graphs as inputs, which means a list of edges and a set of features for each node and each edge. What features do we include for nodes and edges? Here, things start to get a lot less standardized than in the fingerprint world and you really have to get the know-how directly from the practitioners. After scrolling through kaggle notebooks and the [deepchem](https://deepchem.io/) source, I settled on using a set of properties that were easily extracted from each atom and bond using RDKit and put them as node and edge features respectively. Deciding how many atom properties and how to encode them into node features was probably the thing that required the most trial and error and made a huge impact on performance. I first started with a few basic properties and performance was pretty low, but then added quite a bit more and it started to get a bit better. What was interesting is that how I encoded the atom properties mattered a lot as well. For example, encoding the valence and number of hydrogens in a one-hot fashion (like the deepchem folks) instead of directly as numbers really helped.
 
 What was the final architecture here? It basically consisted of a sequence of GCN layers and then a global max pooling at the end (I also tried sum and mean as well as more fancy methods like jumping knowledge but they gave similar results). The pooled features are then appended to the graph-level covariates (ion type and fragmentation level) and are then fed to a linear layer with residual connections and then a layer on top to convert to spectra feature space. 
 
-![](/img/molecular_ml/gcp_model.png)
+<img src="/img/molecular_ml/gcn_model.png" style="display:block; margin-left: auto; margin-right: auto;">
+
+![]()
 *Graph convolution architecture*
 
 ### EGNN
@@ -97,14 +99,16 @@ Let’s get a bit more fancy and use an E(3) equivariant graph neural network (E
 
 The GNPS data doesn’t actually have 3D positions computed for each molecule, so I used the very simple MMFF forecefield in RDKIT to compute them from scratch. As with the GCNs, we also add a max global pooling operation and a residual linear head to include the ion type and fragmentation level covariates to then output a spectra.
 
-![](/img/molecular_ml/egnn_model.png)
-*Eqivariante graph neural network (EGNN) architecture*
+<img src="/img/molecular_ml/egnn_model.png" style="display:block; margin-left: auto; margin-right: auto;">
+
+![]()
+*Eqivariant graph neural network (EGNN) architecture*
 
 ### SMILES transformer
 
 Finally, why not try the NLP route and use a string representation of molecules? The most popular is the ubiquitous SMILES, the very same format that the molecules in our dataset are in. SMILES are encoded using a similar algorithm to the ECFP fingerprints, but instead of saving the connectivity as bits, it has a language of its own. To go full NLP, we’ll be actually finetuning a masked language model that has been already trained on a medium size corpus of molecular SMILES. Specifically, we’ll be using the [ChemBERTa](https://github.com/seyonechithrananda/bert-loves-chemistry) model trained on the ZINC database. Getting the model to spit out vectors from SMILES is pretty easy since it uses the Huggingface API. Initially, I don’t know why I tried to code up a model that held the whole ChemBERTa model with frozen parameters as the initial layer and a simple head on top. This of course consumed most of my GPU memory and was super unwieldy to train. I guess I thought I could get fancy by unfreezing some layers but it never worked out. In the end, I stuck with just vectorizing the SMILES first using the pretrained ChemBERTa and then just training an MLP identical to the fingerprint one using those representations.
 
-![](/img/molecular_ml/bert_model.png)
+![](/img/molecular_ml/bert_model.png#center)
 *ChemBERTa-based MLP architecture*
 
 ### Loss, training, and evaluation
@@ -112,8 +116,8 @@ Finally, why not try the NLP route and use a string representation of molecules?
 The loss function here is pretty straightforward. Nothing more than the mean squared error. I tried mean absolute error as well but in general it gave weirder looking spectra. For the optimizer, I used Adam with the magic learning rate 3e-4. I half-heartedly tried using some learning rate schedulers and AdamW but they actually performed worse, likely because they need to be optimized further and I just was running out of motivation at that point. For hyperparameter scans, these are the values that I scanned per model (the ranges were short enough that I just scanned them all):
 
 
-| Model | Hidden units | Layers | Batch size   |
-|-------|--------------|--------|--------------|
+| Model  | Hidden units   | Layers   | Batch size   |
+|:-------|:--------------:|:--------:|:--------------:|
 | mlp   |512,1024,2048 | 1-7    | 16,32,...,256|
 | gcn   |512,1024,2048 | 1-4    | 16,32,...,128|
 | egnn  |512,1024,2048 | 1-4    | 16,32,...,128|
@@ -130,11 +134,11 @@ For evaluation, other than test loss, I assessed the intensity and the M/Z decim
 So how did it turn out? Let’s take a look at the test/validation loss as well as average cosine similarity and ppm in the validation set:
 
 | Model        | Test error |  Validation M/Z percent error |  Validation cosine similarity |
-|:-------------|------------|-------------------------------|-------------------------------|
-| mlp          |   1.87e-4  |                     0.0529508 |                      0.39767  |
-| bert         |   1.79e-4  |                     0.0541171 |                      0.351409 |
-| egnn         |   1.87e-4  |                     0.0576607 |                      0.309233 |
-| gcn          |   1.88e-4  |                     0.0574044 |                      0.285176 |
+|:-------------|:------------:|:-------------------------------:|:-------------------------------:|
+| mlp          |   1.87e-4  |                     0.052 |                      0.39  |
+| bert         |   1.79e-4  |                     0.054 |                      0.35 |
+| egnn         |   1.87e-4  |                     0.057 |                      0.30 |
+| gcn          |   1.88e-4  |                     0.057 |                      0.28 |
 
 Interestingly, the deeper MLPs based on fingerprints and SMILES do the best. Interestingly, the EGNN comes on top on test loss, but the MLPs win on cosine similarity by some margin. As you can see, the EGNN does add something useful compared to the vanilla GCN, which is pretty cool. I looked at the top/bottom 10 best/worst predictions for each model. All of them nailed simple molecules that are super common, like nucleotides (I wonder if that’s a training set contamination) with decent fragmentation levels. Interestingly, the ones where all models did worse was overpredicting spectral fragment peaks for molecules that had low fragmentation level and thus did not have complex spectra. I think this highlights why learning spectra from molecules is a difficult problem: sometimes a molecule fragments and sometimes it doesn’t even in the same-ish conditions, the spectra can and does change with all these variables.
 
@@ -146,18 +150,23 @@ I wanted to compare head to head to other methods but 4k molecules would take a 
 ## Closing thoughts in the form of questions
 
 **Are the models available for use?**
+
 Yes! I made [a package](https://github.com/dimenwarper/molxspec) that you can install locally and run, hopefully easily (you do have to install `torch_geometric` first though, which depends on your pytorch and gpu configuration).. The goal was to have a runnable program that could get to MS2 spectra from just SMILES. I’ve also made a [simple colab](https://colab.research.google.com/drive/1YvQj-BDRKyk3UqbMvaqTu3pdq99kOx45#scrollTo=swt35Xx-ddyR) that’s easy to run.
 
 **Do you have the processed data somewhere?**
+
 Yeah, I made a [zenodo entry](https://zenodo.org/record/5717415#.YaRZ0tBKi3A) with the processed GNPS data as well as the 3D geometries in SDF,. though in hindsight this might not have been a good use of zenodo….
 
 **Is this the best you can do?**
+
 Hopefully I gave the impression that I cut some corners to get to the end, which means that there’s likely a lot more that you can do with the data. For starters, I don’t think I’m even close to the “state-of-the-art” of even this dataset. For example, it turns out that the EGNN was generally harder to train, and I had to tweak the learning rate a bit (to 1e-4 in the end). However, I don’t think I saturated its learning capacity (as opposed to the fingerprint MLP, which really hit a plateau) and I can easily see how its performance could be made better by just training for longer. For the ChemBERTa SMILES MLP, I only used the most basic ZINC trained model -- their pubmed model should have learned better representations. There are also still a lot of tried-and-true things you can do to squeeze more performance, like stochastic weight averaging and actually scanning learning rates and learning schedules properly.
 
 **What’s the best way to improve performance?**
+
 By far the best way to improve would be to convince mass spec folks to deposit MOAR DATA to GNPS. I cannot stress enough how important open databases are, especially in fields like mass spectrometry where they have historically been closed and behind proprietary software. Hopefully this adds to the evidence of how powerful being aggressively open is. On that note, my hypothesis is that enough MSn (n>=2) spectral data (e.g. millions of spectra) would get a transformatively accurate compound identification model. Just imagine all the chemical diversity out there hidden right under our noses.
 
 **Did you learn anything on the machine learning side?**
+
 I think so! Aside from technical stuff, I think we really should have self-supervised, pre-trained models like ChemBERTa but for all modalities, including 3D equivariant ones. Training these things from scratch is a bit onerous and is limited by the practitioner’s GPU setup. There’s already work on pretraining [graph neural nets](https://arxiv.org/abs/1905.12265) that goes back to 2019, we just need to make pretrained models more popular and adapt them to the equivariant setting.
 
 

@@ -8,6 +8,16 @@
     <language>en-US</language>
     <lastBuildDate>Sun, 11 Jun 2017 21:51:17 -0700</lastBuildDate><atom:link href="http://hyperparameter.space/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>The four paths to molecular machine learning</title>
+      <link>http://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</link>
+      <pubDate>Sat, 27 Nov 2021 20:38:47 -0800</pubDate>
+      
+      <guid>http://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</guid>
+      <description>Going from molecular structure to mass spectra
+Small molecules make most of our medicines, are the lingua franca of cell communication, metabolism, and signalling, and form an extremely diverse chemical landscape. And they’re everywhere in the environment. Even though we have millions of these little things cataloged in many databases, the chemical space of small molecules, even restricting to biological ones, remains relatively unexplored. It’s a brave ocean of uncharted waters full of potential therapies and materials.</description>
+    </item>
+    
+    <item>
       <title>When will science become version controlled?</title>
       <link>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</link>
       <pubDate>Tue, 07 Sep 2021 20:50:58 -0700</pubDate>

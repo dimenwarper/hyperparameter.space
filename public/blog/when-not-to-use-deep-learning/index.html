@@ -71,9 +71,9 @@
 
 
     
-    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2021-09-08%2020%3a33%3a24.124000288%20-0700%20PDT%20m%3d%2b0.056448452">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2021-09-08%2020%3a33%3a24.124000288%20-0700%20PDT%20m%3d%2b0.056448452">
-    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2021-09-08%2020%3a33%3a24.124000288%20-0700%20PDT%20m%3d%2b0.056448452">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/reset.css?t=2021-11-28%2021%3a09%3a00.344701752%20-0800%20PST%20m%3d%2b0.069496256">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/pygments.css?t=2021-11-28%2021%3a09%3a00.344701752%20-0800%20PST%20m%3d%2b0.069496256">
+    <link rel="stylesheet" href="http://hyperparameter.space/css/main.css?t=2021-11-28%2021%3a09%3a00.344701752%20-0800%20PST%20m%3d%2b0.069496256">
     
 
 
@@ -116,6 +116,8 @@ if (!doNotTrack) {
                 
                 
                 
+                
+                    
                 
                     
                 
@@ -245,7 +247,7 @@ if (!doNotTrack) {
                 </div>
             </div>
             <div class="markdown">
-                <p><a href="http://www.kdnuggets.com/2017/07/top-news-week-0724-0730.html"><img src="http://www.kdnuggets.com/images/top-kdnuggets-blog-2017-jul-gold.png" width=95 alt="Gold Blog, July 2017" align="left"></a> I know it&rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&rsquo;ve been thinking recently. It all started with a <a href="https://simplystatistics.org/2017/05/31/deeplearning-vs-leekasso/">post in the Simply Stats blog</a> by Jeff Leek on the caveats of using deep learning in the small sample size regime. In sum, he argues that when the sample size is small (which happens a lot in the bio domain), linear models with few parameters perform better than deep nets even with a modicum of layers and hidden units. He goes on to show that a very simple linear predictor, with top ten most informative features, performs better than a simple deep net when trying to classify zeros and ones in the MNIST dataset using only 80 or so samples. This prompted Andrew beam to write a <a href="http://beamandrew.github.io/deeplearning/2017/06/04/deep_learning_works.html">rebuttal</a> in which a properly trained deep net was able to beat the simple linear model, even with very few training samples. This back-and-forth comes at a time where more and more researchers in biomedical informatics are adopting deep learning for various problems. Is the hype real or are linear models really all we need? The answer, as alwyas, is that it depends. In this post, I want to visit use cases in machine learning where using deep learning does not really make sense as well as tackle preconceptions that I think prevent deep learning to be used effectively, especially for newcomers.</p>
+                <p>I know it&rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&rsquo;ve been thinking recently. It all started with a <a href="https://simplystatistics.org/2017/05/31/deeplearning-vs-leekasso/">post in the Simply Stats blog</a> by Jeff Leek on the caveats of using deep learning in the small sample size regime. In sum, he argues that when the sample size is small (which happens a lot in the bio domain), linear models with few parameters perform better than deep nets even with a modicum of layers and hidden units. He goes on to show that a very simple linear predictor, with top ten most informative features, performs better than a simple deep net when trying to classify zeros and ones in the MNIST dataset using only 80 or so samples. This prompted Andrew beam to write a <a href="http://beamandrew.github.io/deeplearning/2017/06/04/deep_learning_works.html">rebuttal</a> in which a properly trained deep net was able to beat the simple linear model, even with very few training samples. This back-and-forth comes at a time where more and more researchers in biomedical informatics are adopting deep learning for various problems. Is the hype real or are linear models really all we need? The answer, as alwyas, is that it depends. In this post, I want to visit use cases in machine learning where using deep learning does not really make sense as well as tackle preconceptions that I think prevent deep learning to be used effectively, especially for newcomers.</p>
 <h1 id="breaking-deep-learning-preconceptions">Breaking deep learning preconceptions</h1>
 <p>First, let&rsquo;s tackle some preconceptions that I perceive most folks outside the field have that turn out to be half-truths. There&rsquo;s two broad ones and one a bit more technical that I&rsquo;m going to elaborate on. This is somewhat of an extension to Andrew Beam&rsquo;s excellent &ldquo;Misconceptions&rdquo; section in his <a href="http://beamandrew.github.io/deeplearning/2017/06/04/deep_learning_works.html">post</a>.</p>
 <h2 id="deep-learning-can-really-work-on-small-sample-sizes">Deep learning can really work on small sample sizes</h2>

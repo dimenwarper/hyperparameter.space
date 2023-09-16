@@ -1,4 +1,4 @@
-baseurl             = "http://hyperparameter.space"
+baseurl             = "https://hyperparameter.space"
 builddrafts         = false
 canonifyurls        = true
 contentdir          = "content"

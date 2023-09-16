@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Hyperparameter Space</title>
-    <link>http://hyperparameter.space/categories/</link>
+    <link>https://hyperparameter.space/categories/</link>
     <description>Recent content in Categories on Hyperparameter Space</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language><atom:link href="http://hyperparameter.space/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language><atom:link href="https://hyperparameter.space/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

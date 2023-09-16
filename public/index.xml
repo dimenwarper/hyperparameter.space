@@ -2,92 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>_index on Hyperparameter Space</title>
-    <link>http://hyperparameter.space/</link>
+    <link>https://hyperparameter.space/</link>
     <description>Recent content in _index on Hyperparameter Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 11 Jun 2017 21:51:17 -0700</lastBuildDate><atom:link href="http://hyperparameter.space/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Jun 2017 21:51:17 -0700</lastBuildDate><atom:link href="https://hyperparameter.space/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What if we just learn a language model for all of life?</title>
+      <link>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</link>
+      <pubDate>Sat, 22 Oct 2022 10:24:09 -0700</pubDate>
+      
+      <guid>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</guid>
+      <description>What&amp;rsquo;s the language of life?
+There’s something about current large language models that feels like a big paradigm shift not only in NLP but in many other domains. Generally,advances in modeling sequences and language permeate many different domains and get applied to all sorts of tasks. Back in their day hidden Markov models, stochastic context-free grammars, and conditional random fields trickled from NLP to a variety of applications with generally good success rates.</description>
+    </item>
+    
     <item>
       <title>The four paths to molecular machine learning</title>
-      <link>http://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</link>
+      <link>https://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</link>
       <pubDate>Sat, 27 Nov 2021 20:38:47 -0800</pubDate>
       
-      <guid>http://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</guid>
+      <guid>https://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</guid>
       <description>Going from molecular structure to mass spectra
 Small molecules make most of our medicines, are the lingua franca of cell communication, metabolism, and signalling, and form an extremely diverse chemical landscape. And they’re everywhere in the environment. Even though we have millions of these little things cataloged in many databases, the chemical space of small molecules, even restricting to biological ones, remains relatively unexplored. It’s a brave ocean of uncharted waters full of potential therapies and materials.</description>
     </item>
     
     <item>
       <title>When will science become version controlled?</title>
-      <link>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</link>
+      <link>https://hyperparameter.space/blog/when-will-science-become-version-controlled/</link>
       <pubDate>Tue, 07 Sep 2021 20:50:58 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</guid>
+      <guid>https://hyperparameter.space/blog/when-will-science-become-version-controlled/</guid>
       <description>It’s no secret that there’s something broken about how science is published and disseminated. Behind each paper there’s a hefty body of work, revisions, unpublished data, and back-and-forth argumentation that doesn’t make it to the final version. Unless a preprint is published or an openly-reviewed avenue is chosen (e.g. eLife, OpenReview, or the various journals that choose post-publication peer review), the whole discussion between authors and reviewers remains behind closed doors.</description>
     </item>
     
     <item>
       <title>Implementing a geometric deep learning module from scratch</title>
-      <link>http://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</link>
+      <link>https://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</link>
       <pubDate>Tue, 27 Jul 2021 14:51:18 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</guid>
+      <guid>https://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</guid>
       <description>A Hacker&amp;rsquo;s Guide to Equivariance
 Geometric deep learning is a field that has picked up considerable momentum recently. And with good reason, as it deals with ways on how to reason over objects (like graphs, meshes, and protein structures) that are tied to impactful tasks downstream (like predicting molecular properties and automating animation). Additionally, it’s setting up a framework that tries to retroactively explain many of the successes of deep learning with the hope of extrapolating lessons learned to new, more challenging domains.</description>
     </item>
     
     <item>
       <title>This is (not) a machine</title>
-      <link>http://hyperparameter.space/blog/this-is-not-a-machine/</link>
+      <link>https://hyperparameter.space/blog/this-is-not-a-machine/</link>
       <pubDate>Sun, 18 Apr 2021 14:51:18 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/this-is-not-a-machine/</guid>
+      <guid>https://hyperparameter.space/blog/this-is-not-a-machine/</guid>
       <description>Why the machine metaphor has failed in biology and software and the concepts that are replacing it
 Much progress has been made in laboratory and computational techniques to probe on populations of cells, molecules, neurons, and training of machine learning models. Thanks to these advances, detailed data of both the dynamics and causal relationships in complex systems is beginning to be commonplace. I believe that the conceptual frameworks used to tackle these data are beginning to converge in several fronts.</description>
     </item>
     
     <item>
       <title>An unorthodox path for implementing a probabilistic programming language</title>
-      <link>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</link>
+      <link>https://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</link>
       <pubDate>Sun, 18 Oct 2020 14:51:18 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</guid>
+      <guid>https://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</guid>
       <description>I first found out about probabilistic programming in my later years of grad school when, looking for good tutorial on Bayesian inference, I stumbled upon the excellent Bayesian Methods for Hackers, which heavily features PyMC. I was (and in many ways I still am) a neophyte Bayesian methods, having ignored the quasi-religious sermons that my friends in operations research and actuarial sciences gave to any passer by, swearing by the name of simulation with strange and arcane words ending in UGS and AGS.</description>
     </item>
     
     <item>
       <title>The amazing world of biocatalytic retrosynthesis</title>
-      <link>http://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</link>
+      <link>https://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</link>
       <pubDate>Thu, 16 Jul 2020 11:48:26 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</guid>
+      <guid>https://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</guid>
       <description>The world is the enzymes&#39; playground and we are but their vessels. We wage their wars, we nurture them, we help them evolve, grow, and replicate. Life really is all about them. Fortunately, we&amp;rsquo;ve also learned to harness them for our ends, using them to synthesize and edit DNA, digest harmful materials, and, crucially, produce a vast array of molecules with a plethora of applications ranging from agriculture to pharmaceuticals. Compared to what organic synthesis techniques can accomplish with long sequences of basic chemical modifications, enzymes can achieve more complex molecular structures with less steps, at enviable ambient temperatures, many times more yield, and a higher chance of bioactivity.</description>
     </item>
     
     <item>
       <title>How convincing your experimental approach is according to Bayes</title>
-      <link>http://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</link>
+      <link>https://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</link>
       <pubDate>Sat, 11 Jul 2020 22:10:24 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</guid>
+      <guid>https://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</guid>
       <description>Experimental approaches in biology tend to fall within broader conceptual frameworks that guide the logic of the experimental design. Each of these frameworks carries both a cost and some expected quality on the knowledge obtained from the results. For example, on one end we may have multifactorial perturbation frameworks where we collect samples with little or no control over the perturbations effected on each samples and we attempt to infer what variables are correlated in the system.</description>
     </item>
     
     <item>
       <title>How do we measure our molecular understanding in biology? From ten commandments to ten questions</title>
-      <link>http://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</link>
+      <link>https://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</link>
       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</guid>
+      <guid>https://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</guid>
       <description>I recently read an interesting entry in the Nintil blog that tries to frame our understanding of biology by asking several key questions. The questions were derived/inspired from Tinberg&amp;rsquo;s four questions, which are four general directions one can take, ( (evolutionary, proximate or individual) X (ontogenic, mechanistic) ), when studying biological traits. The questions were mainly written with animal behavior in mind (Tinberg was an ethologist) but are broadly applicable to any biological concept.</description>
     </item>
     
     <item>
       <title>Sense and sensitivity (and specificty and utility)</title>
-      <link>http://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</link>
+      <link>https://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</link>
       <pubDate>Fri, 05 Jul 2019 14:32:16 -0800</pubDate>
       
-      <guid>http://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</guid>
+      <guid>https://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</guid>
       <description>A recent tweet from Ash Jogalekar got me thinking.
 List of compounds medicinal chemists wouldn&amp;#39;t have bothered to pursue because they didn&amp;#39;t fit &amp;quot;intuition&amp;quot; about &amp;quot;druglike&amp;quot; rules
 Aspirin
@@ -100,46 +110,46 @@ In drug discovery, there will always be enough exceptions to the rules
     
     <item>
       <title>Causal models make a comeback</title>
-      <link>http://hyperparameter.space/blog/causal-models-make-a-comeback/</link>
+      <link>https://hyperparameter.space/blog/causal-models-make-a-comeback/</link>
       <pubDate>Sun, 23 Dec 2018 14:32:16 -0800</pubDate>
       
-      <guid>http://hyperparameter.space/blog/causal-models-make-a-comeback/</guid>
+      <guid>https://hyperparameter.space/blog/causal-models-make-a-comeback/</guid>
       <description>I really can’t help but smile when hearing folks talking about causal models recently. It looks like causal models are making a comeback! This is a pleasant surprise to me, since I’ve always been a fan of causal inference and I wasn’t sure Judea Pearl’s “Book of Why” was going to catch up or not. But now we even have Pearl on Twitter and there’s more light being shed on work that leverages causal models for various problems or that scales them to very high dimensional settings.</description>
     </item>
     
     <item>
       <title>A single-cell journey from mechanistic to descriptive modeling and back again</title>
-      <link>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</link>
+      <link>https://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</link>
       <pubDate>Wed, 06 Sep 2017 23:50:07 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</guid>
+      <guid>https://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</guid>
       <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;], [&#39;\\(&#39;,&#39;\\)&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.Hub.Queue(function() { // Fix  tags after MathJax finishes running. This is a // hack to overcome a shortcoming of Markdown. Discussion at // https://github.com/mojombo/jekyll/issues/199 var all = MathJax.Hub.getAllJax(), i; for(i = 0; i Whenever I start thinking about a dataset that I need to model or start reading on a new field, one of the first things I try to get a sense of is the level of mechanistic understanding that we currently have on the phenomena that generated the data, and how that mechanism relates (generalizes) to other phenomena.</description>
     </item>
     
     <item>
       <title>Software is eating AI</title>
-      <link>http://hyperparameter.space/blog/software-is-eating-ai/</link>
+      <link>https://hyperparameter.space/blog/software-is-eating-ai/</link>
       <pubDate>Wed, 19 Jul 2017 10:03:29 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/software-is-eating-ai/</guid>
+      <guid>https://hyperparameter.space/blog/software-is-eating-ai/</guid>
       <description>There&amp;rsquo;s a famous line written by legend Marc Andreessen that summarizes the vast power of growth and disruption that commoditized computation has come to have: &amp;ldquo;Software is eating the world&amp;rdquo;. Earlier in the year, Jensen Huang from Nvidia ominously turned the phrase on its head: &amp;ldquo;Software is eating the world, but AI is going to eat software&amp;rdquo;. In many ways, I think this prophecy will indeed come to pass. Current software has become so pervasive because we have tools that translate tasks that would seem daunting (configure millions of circuit states to solve millions of repetitive tasks) into programming languages that are easy to write, learn, and teach.</description>
     </item>
     
     <item>
       <title>When not to use deep learning</title>
-      <link>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</link>
+      <link>https://hyperparameter.space/blog/when-not-to-use-deep-learning/</link>
       <pubDate>Fri, 16 Jun 2017 21:17:31 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</guid>
+      <guid>https://hyperparameter.space/blog/when-not-to-use-deep-learning/</guid>
       <description>I know it&amp;rsquo;s a weird way to start a blog with a negative, but there was a wave of discussion in the last few days that I think serves as a good hook for some topics on which I&amp;rsquo;ve been thinking recently. It all started with a post in the Simply Stats blog by Jeff Leek on the caveats of using deep learning in the small sample size regime. In sum, he argues that when the sample size is small (which happens a lot in the bio domain), linear models with few parameters perform better than deep nets even with a modicum of layers and hidden units.</description>
     </item>
     
     <item>
       <title>about</title>
-      <link>http://hyperparameter.space/about/</link>
+      <link>https://hyperparameter.space/about/</link>
       <pubDate>Tue, 11 Apr 2017 16:23:34 -0700</pubDate>
       
-      <guid>http://hyperparameter.space/about/</guid>
+      <guid>https://hyperparameter.space/about/</guid>
       <description>My full name is Sergio Pablo Sanchez Cordero Gonzalez but I usually go (and publish) by Pablo Cordero. I&amp;rsquo;m currently a computational biologist at Hexagon Bio, mining the world&amp;rsquo;s fungalome for drugs. Previously, I&amp;rsquo;ve been a postdoc at UCSC&amp;rsquo;s systems biology group doing applied machine learning research on single-cell measurements and I did my doctoral work in RNA structure, the genomics of cardiovascular disease, and other things with Rhiju Das and Euan Ashley at Stanford University.</description>
     </item>
     

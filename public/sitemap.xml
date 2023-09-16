@@ -2,59 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://hyperparameter.space/blog/</loc>
+    <loc>https://hyperparameter.space/blog/</loc>
+    <lastmod>2022-10-22T10:24:09-07:00</lastmod>
+  </url><url>
+    <loc>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</loc>
+    <lastmod>2022-10-22T10:24:09-07:00</lastmod>
+  </url><url>
+    <loc>https://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</loc>
     <lastmod>2021-11-27T20:38:47-08:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/the-four-paths-to-molecular-machine-learning/</loc>
-    <lastmod>2021-11-27T20:38:47-08:00</lastmod>
-  </url><url>
-    <loc>http://hyperparameter.space/blog/when-will-science-become-version-controlled/</loc>
+    <loc>https://hyperparameter.space/blog/when-will-science-become-version-controlled/</loc>
     <lastmod>2021-09-07T20:50:58-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</loc>
+    <loc>https://hyperparameter.space/blog/implementing-a-geometric-deep-learning-module-from-scratch/</loc>
     <lastmod>2021-07-27T14:51:18-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/this-is-not-a-machine/</loc>
+    <loc>https://hyperparameter.space/blog/this-is-not-a-machine/</loc>
     <lastmod>2021-04-18T14:51:18-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</loc>
+    <loc>https://hyperparameter.space/blog/an-unorthodox-path-for-implementing-a-probabilistic-programming-language/</loc>
     <lastmod>2020-10-18T14:51:18-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</loc>
+    <loc>https://hyperparameter.space/blog/the-amazing-world-of-biocatalytic-retrosynthesis/</loc>
     <lastmod>2020-07-16T11:48:26-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</loc>
+    <loc>https://hyperparameter.space/blog/how-convincing-your-experimental-approach-is-according-to-bayes/</loc>
     <lastmod>2020-07-11T22:10:24-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</loc>
+    <loc>https://hyperparameter.space/blog/how-do-we-measure-our-molecular-understanding-in-biology-from-ten-commandments-to-ten-questions/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</loc>
+    <loc>https://hyperparameter.space/blog/sense-and-sensitivity-and-specificty-and-utility/</loc>
     <lastmod>2019-07-05T14:32:16-08:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/causal-models-make-a-comeback/</loc>
+    <loc>https://hyperparameter.space/blog/causal-models-make-a-comeback/</loc>
     <lastmod>2018-12-23T14:32:16-08:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</loc>
+    <loc>https://hyperparameter.space/blog/a-single-cell-journey-from-mechanistic-to-descriptive-modeling-and-back-again/</loc>
     <lastmod>2017-09-06T23:50:07-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/software-is-eating-ai/</loc>
+    <loc>https://hyperparameter.space/blog/software-is-eating-ai/</loc>
     <lastmod>2017-07-19T10:03:29-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/blog/when-not-to-use-deep-learning/</loc>
+    <loc>https://hyperparameter.space/blog/when-not-to-use-deep-learning/</loc>
     <lastmod>2017-06-16T21:17:31-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/</loc>
+    <loc>https://hyperparameter.space/</loc>
     <lastmod>2017-06-11T21:51:17-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/about/</loc>
+    <loc>https://hyperparameter.space/about/</loc>
     <lastmod>2017-04-11T16:23:34-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/fixed/</loc>
+    <loc>https://hyperparameter.space/fixed/</loc>
     <lastmod>2017-04-11T16:23:34-07:00</lastmod>
   </url><url>
-    <loc>http://hyperparameter.space/categories/</loc>
+    <loc>https://hyperparameter.space/categories/</loc>
   </url><url>
-    <loc>http://hyperparameter.space/tags/</loc>
+    <loc>https://hyperparameter.space/tags/</loc>
   </url>
 </urlset>

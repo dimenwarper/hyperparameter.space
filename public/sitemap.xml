@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://hyperparameter.space/blog/a-survey-of-tokenization-in-different-data-domains/</loc>
+    <lastmod>2023-09-14T12:48:45-07:00</lastmod>
+  </url><url>
     <loc>https://hyperparameter.space/blog/</loc>
-    <lastmod>2022-10-22T10:24:09-07:00</lastmod>
+    <lastmod>2023-09-14T12:48:45-07:00</lastmod>
   </url><url>
     <loc>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</loc>
     <lastmod>2022-10-22T10:24:09-07:00</lastmod>

@@ -8,6 +8,16 @@
     <language>en-US</language>
     <lastBuildDate>Sun, 11 Jun 2017 21:51:17 -0700</lastBuildDate><atom:link href="https://hyperparameter.space/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>A survey of tokenization in different data domains</title>
+      <link>https://hyperparameter.space/blog/a-survey-of-tokenization-in-different-data-domains/</link>
+      <pubDate>Thu, 14 Sep 2023 12:48:45 -0700</pubDate>
+      
+      <guid>https://hyperparameter.space/blog/a-survey-of-tokenization-in-different-data-domains/</guid>
+      <description>Featurization by any other name would self attend as sweet
+Even before taking the world by storm through LLMs, transformers have for some time now been explored in various different domains, albeit with specific architectural adaptations. Eventually – and even more so with the advent of LLMs – it started to become commonplace to fix much of the transformer architecture and put the onus of domain application almost entirely into data featurization itself, in a way reminiscent of how tabularization, xgboost, and friends took over much of the structured regression setups in any domain.</description>
+    </item>
+    
+    <item>
       <title>What if we just learn a language model for all of life?</title>
       <link>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</link>
       <pubDate>Sat, 22 Oct 2022 10:24:09 -0700</pubDate>
@@ -150,7 +160,7 @@ In drug discovery, there will always be enough exceptions to the rules
       <pubDate>Tue, 11 Apr 2017 16:23:34 -0700</pubDate>
       
       <guid>https://hyperparameter.space/about/</guid>
-      <description>My full name is Sergio Pablo Sanchez Cordero Gonzalez but I usually go (and publish) by Pablo Cordero. I&amp;rsquo;m currently a computational biologist at Hexagon Bio, mining the world&amp;rsquo;s fungalome for drugs. Previously, I&amp;rsquo;ve been a postdoc at UCSC&amp;rsquo;s systems biology group doing applied machine learning research on single-cell measurements and I did my doctoral work in RNA structure, the genomics of cardiovascular disease, and other things with Rhiju Das and Euan Ashley at Stanford University.</description>
+      <description>My full name is Sergio Pablo Sanchez Cordero Gonzalez but I usually go (and publish) by Pablo Cordero. I&amp;rsquo;m currently a data scientist at Stripe. Previously I&amp;rsquo;ve been a computational biologist at Hexagon Bio, mining the world&amp;rsquo;s fungalome for drugs, a postdoc at UCSC&amp;rsquo;s systems biology group doing applied machine learning research on single-cell measurements, and I did my doctoral work in RNA structure, the genomics of cardiovascular disease, and other things with Rhiju Das and Euan Ashley at Stanford University.</description>
     </item>
     
   </channel>

@@ -6,7 +6,17 @@
     <description>Recent content in Blog on Hyperparameter Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 22 Oct 2022 10:24:09 -0700</lastBuildDate><atom:link href="https://hyperparameter.space/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Sep 2023 12:48:45 -0700</lastBuildDate><atom:link href="https://hyperparameter.space/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A survey of tokenization in different data domains</title>
+      <link>https://hyperparameter.space/blog/a-survey-of-tokenization-in-different-data-domains/</link>
+      <pubDate>Thu, 14 Sep 2023 12:48:45 -0700</pubDate>
+      
+      <guid>https://hyperparameter.space/blog/a-survey-of-tokenization-in-different-data-domains/</guid>
+      <description>Featurization by any other name would self attend as sweet
+Even before taking the world by storm through LLMs, transformers have for some time now been explored in various different domains, albeit with specific architectural adaptations. Eventually – and even more so with the advent of LLMs – it started to become commonplace to fix much of the transformer architecture and put the onus of domain application almost entirely into data featurization itself, in a way reminiscent of how tabularization, xgboost, and friends took over much of the structured regression setups in any domain.</description>
+    </item>
+    
     <item>
       <title>What if we just learn a language model for all of life?</title>
       <link>https://hyperparameter.space/blog/what-if-we-just-learn-a-language-model-for-all-of-life/</link>
